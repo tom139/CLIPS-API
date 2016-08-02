@@ -11,6 +11,6 @@ describe('#clips', function() {
 
   it('should make 2 times 2', function() {
     var result = clips(2.0);
-    expect(result).to.equal(4.0);
+    expect(result).to.equal(3.0);
   });
 })
