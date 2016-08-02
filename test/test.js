@@ -13,4 +13,4 @@ describe('#clips', function() {
     var result = clips(2.0);
     expect(result).to.equal(4.0);
   });
-})
+});
