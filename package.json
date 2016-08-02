@@ -1,0 +1,31 @@
+{
+  "name": "clips-api",
+  "version": "0.0.1",
+  "description": "Server for CLIPS app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tom139/CLIPS-API.git"
+  },
+  "keywords": [
+    "CLIPS",
+    "API",
+    "server",
+    "swe",
+    "beacons",
+    "unipd"
+  ],
+  "author": "BeaconStrips",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tom139/CLIPS-API/issues"
+  },
+  "homepage": "https://github.com/tom139/CLIPS-API#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.0"
+  }
+}
