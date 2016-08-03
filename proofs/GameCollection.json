@@ -1,0 +1,55 @@
+{
+   "testType": "GameCollection",
+   "testTypeVersion": 1,
+   "data" : {
+      "shuffleGames": true,
+      "games" : [
+        {
+          "testType": "MultipleChoice",
+          "testTypeVersion": 1,
+          "data" : {
+            "shuffleAnswers": true,
+            "shuffleQuestions": false,
+            "questions" : [
+              {
+                "question": "Di che colore era il cavallo bianco di Napoleone",
+                "answers" : ["Bianco", "Rosa", "Blu", "Rosso"],
+                "correctIndex" : 0
+              },
+              {
+                "question": "5 + 5 = ",
+                "answers" : ["9", "10", "11", "12"],
+                "correctIndex": 1
+              },
+              {
+                "question": "Qual è il programma preferito di Matteo Franco",
+                "answers" : ["StarUML", "Android Studio", "Paint", "MS World"],
+                "correntIndex" : 2
+              }
+            ]
+          }
+        },
+        {
+          "testType": "TrueFalse",
+          "testTypeVersion": 1,
+          "data" : {
+            "shuffleQuestions": false,
+            "questions" : [
+              {
+                "question": "Napoleone Bonaparte era italiano",
+                "correctAnswer": true
+              },
+              {
+                "question": "Matteo Franco usa MS World",
+                "correctAnswer": true
+              },
+              {
+                "question": "Luca è un bravo programmatore",
+                "correctAnswer": false
+              }
+            ]
+          }
+        }
+      ]
+   }
+}

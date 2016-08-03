@@ -1,0 +1,35 @@
+{
+   "testType": "MultipleChoice",
+   "testTypeVersion": 1,
+   "data" : {
+      "shuffleAnswers": true,
+      "shuffleQuestions": false,
+      "questions" : [
+         {
+            "question": "Di che colore era il cavallo bianco di Napoleone?",
+            "answers" : ["Bianco", "Rosa", "Blu", "Rosso"],
+            "correctIndex" : 0
+         },
+         {
+            "question": "5 + 5 = ",
+            "answers" : ["9", "10", "11", "12"],
+            "correctIndex": 1
+         },
+         {
+            "question": "Qual è il programma preferito di Matteo Franco?",
+            "answers" : ["StarUML", "Android Studio", "Paint", "MS World"],
+            "correctIndex" : 3
+         },
+         {
+            "question": "Dove è nato Napoleone Bonaparte?",
+            "answers" : ["Italia", "Giappone", "Turchia", "Francia"],
+            "correctIndex" : 0
+         },
+         {
+            "question": "Quanto saresti disposto a pagare per la fantastica app che stai usando?",
+            "answers" : ["0.99€", "1.99€", "0", "Non la installo neanche se è gratis"],
+            "correctIndex" : 3
+         }
+      ]
+   }
+}
