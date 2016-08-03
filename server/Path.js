@@ -211,17 +211,17 @@ function PathHandler() {
    this.getTest = function(proof) {
      return new Promise(function(resolve, reject) {
        fs.readFile(testPath+proof.testData, {encoding: 'utf8'}).then(function(content){
-         resolve(content);
+         resolve(JSON.parse(content));
        }, function(error) {
          reject(Error(505, 'unable to read from file '+testPath+proof.testData, error, null));
-       })
+      });
      });
    };
 
    this.getAlgorithm = function(proof) {
      return new Promise(function(resolve, reject) {
        fs.readFile(algorithmPath+proof.scoringAlgorithmData, {encoding: 'utf8'}).then(function(content){
-         resolve(content);
+         resolve(JSON.parse(content));
        }, function(error) {
          reject(Error(505, 'unable to read from file '+algorithmPath+proof.scoringAlgorithmData, error, null));
       });
