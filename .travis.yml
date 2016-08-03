@@ -8,3 +8,6 @@ install:
 
 script:
   - npm test
+
+notifications:
+  slack: beaconstrips:1kjxyOQu6KcR1XbAr8aRTfCM
