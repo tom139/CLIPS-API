@@ -1,0 +1,29 @@
+{
+   "testType": "TrueFalse",
+   "testTypeVersion": 1,
+   "data" : {
+      "shuffleQuestions": false,
+      "questions" : [
+         {
+            "question": "Viviana è l'unica ragazza del gruppo",
+            "correctAnswer": false
+         },
+         {
+            "question": "Matteo Franco usa MS World",
+            "correctAnswer": true
+         },
+         {
+            "question": "Luca è un bravo programmatore",
+            "correctAnswer": false
+         },
+         {
+           "question": "Enrico non sa cos'è Twitch",
+           "correctAnswer": false
+         },
+         {
+           "question": "Cenze non sa il perché del suo soprannome",
+           "correctAnswer": true
+         }
+      ]
+   }
+}

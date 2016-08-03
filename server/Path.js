@@ -1,6 +1,9 @@
 'use strict';
 
 var db = require('./db.js');
+const fs = require('fs-promise');
+const testPath = require('./config.js').proofPath;
+const algorithmPath = require('./config.js').algorithmPath;
 
 function Error(code, debug, info, user) {
    return {
@@ -116,16 +119,17 @@ function PathHandler() {
          var query = db().select().from('Proof').where({id: step.proofID});
          query.then(function(proofs) {
             if (proofs.length == 1) {
-               resolve(proofs[0]);
+               var proof = proofs[0];
+               this.fulfilledProof(proof).then(resolve, reject);
             } else if (proofs.length == 0) {
                reject(Error(461, 'unable to find proof with id '+ step.proofID, null, null));
             } else {
                reject(Error(505, 'id should uniquely identify proofs', null, null));
             }
-         }, function(error) {
+         }.bind(this), function(error) {
             reject(Error(505, 'Error querying for proof', error, null));
          });
-      });
+      }.bind(this));
    };
 
    this.getProximities = function(step) {
@@ -166,7 +170,7 @@ function PathHandler() {
             resolve(proximity);
          }
       }.bind(context));
-   }
+   };
 
    this.fulfilledStep = function(step) {
       var context = {
@@ -185,6 +189,43 @@ function PathHandler() {
             resolve(step);
          }.bind(context), reject);
       }.bind(context));
+   };
+
+   this.fulfilledProof = function(proof) {
+     var context = {
+       proof: proof,
+       this:  this
+     };
+     return new Promise(function(resolve, reject) {
+       var test = context.this.getTest(proof);
+       var algorithm = context.this.getAlgorithm(proof);
+       Promise.all([test, algorithm]).then(function([test, algorithm]) {
+         var proof = context.proof;
+         proof.test = test;
+         proof.algorithm = algorithm;
+         resolve(proof);
+       }.bind(context), reject);
+     }.bind(context));
+   }
+
+   this.getTest = function(proof) {
+     return new Promise(function(resolve, reject) {
+       fs.readFile(testPath+proof.testData, {encoding: 'utf8'}).then(function(content){
+         resolve(content);
+       }, function(error) {
+         reject(Error(505, 'unable to read from file '+testPath+proof.testData, error, null));
+       })
+     });
+   };
+
+   this.getAlgorithm = function(proof) {
+     return new Promise(function(resolve, reject) {
+       fs.readFile(algorithmPath+proof.scoringAlgorithmData, {encoding: 'utf8'}).then(function(content){
+         resolve(content);
+       }, function(error) {
+         reject(Error(505, 'unable to read from file '+algorithmPath+proof.scoringAlgorithmData, error, null));
+      });
+     });
    };
 
    /*

@@ -1,0 +1,12 @@
+{
+  "algorithmType": "LinearScoring",
+  "version": 1,
+  "data": {
+    "timeWeight": 1.0,
+    "accuracyWeight": 1.0,
+    "minScore": 0,
+    "maxScore": 100,
+    "minTime": 10,
+    "maxTime": 60
+  }
+}

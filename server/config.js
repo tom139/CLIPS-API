@@ -11,4 +11,5 @@ module.exports.db = {
     }
 };
 
-module.exports.proofPath = "../proofs/";
+module.exports.proofPath = "/Users/tom/Developer/CLIPS-API/proofs/";
+module.exports.algorithmPath = "/Users/tom/Developer/CLIPS-API/algorithms/";

@@ -14,3 +14,29 @@ describe('#clips', function() {
     expect(result).to.equal(4.0);
   });
 });
+
+describe('#path', function() {
+   const ProofHandler = require('../server/Path.js');
+   var handler = new ProofHandler();
+   var proof = {
+      fakeProof: "fake",
+      testData:  "BeaconStripsVF.json",
+      scoringAlgorithmData: "5050.json"
+   };
+   var fulfilled = handler.fulfilledProof(proof);
+   it('should retrieve test', function() {
+      fulfilled.then(function(proof) {
+         console.log('proof: ', proof);
+         proof.should.have.property('test');
+         proof.test.should.be.a('string');
+      });
+   });
+
+   it('should retrieve algorithm', function() {
+      fulfilled.then(function(proof) {
+         console.log(proof);
+         proof.should.have.property('algorithm');
+         proof.algorithm.should.be.a('string');
+      });
+   });
+});
