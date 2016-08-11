@@ -3,7 +3,7 @@
 var RequestHandler = require('./URLRequestHandler.js');
 var UsernameChecker = require('./utility/UsernameChecker.js');
 var Token = require('./utility/TokenGenerator.js');
-var db = require('./db.js');
+var db = require('./DBHandler.js');
 var emailChecker = require('./utility/EmailChecker.js');
 var passwordChecker = require('./utility/PasswordChecker.js')
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('./db.js');
+var db = require('./DBHandler.js');
 var RequestHandler = require('./URLRequestHandler.js');
 
 /// classe che rappresenta l'handler di una richiesta che richiede l'accesso al db

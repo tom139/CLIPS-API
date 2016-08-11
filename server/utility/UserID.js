@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('../db.js');
+var db = require('../DBHandler.js');
 
 function userIDFromToken(token) {
    var prom = new Promise(function(resolve, reject) {

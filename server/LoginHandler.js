@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('./db.js');
+var db = require('./DBHandler.js');
 var URLRequestHandler = require('./URLRequestHandler.js');
 var Token = require('./utility/TokenGenerator.js');
 

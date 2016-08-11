@@ -1,7 +1,7 @@
  'use strict';
 
 var userID = require('./UserIDRetriever.js');
-var db = require('./db.js');
+var db = require('./DBHandler.js');
 var UserID = require('./utility/UserID.js').userID;
 var SQLRequestHandler = require('./SQLRequestHandler.js');
 

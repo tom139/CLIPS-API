@@ -1,7 +1,7 @@
 'use strict';
 
 var userID = require('./UserIDRetriever.js');
-var db = require('./db.js');
+var db = require('./DBHandler.js');
 var SQLRequestHandler = require('./SQLRequestHandler.js');
 
 function LogoutHandler() {

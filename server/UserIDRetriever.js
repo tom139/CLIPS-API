@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('./db.js');
+var db = require('./DBHandler.js');
 
 var checker = function(token) {
    var promise = new Promise(function(resolve, reject) {

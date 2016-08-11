@@ -4,15 +4,14 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
-const AppInfo = require('./AppInfoHandler.js');
-const Beacons = require('./BeaconRequestHandler.js');
+const AppInfo = require('./AppInfoProvider.js');
 const Login   = require('./LoginHandler.js');
-const Logout  = require('./Logout.js');
-const PathsResults = require('./PathsResults.js');
-const Buildings  = require('./Buildings.js');
+const Logout  = require('./LogoutHandler.js');
+const PathsResults = require('./PathResultsProvider.js');
+const Buildings  = require('./BuildingsProvider.js');
 const Registration = require('./RegistrationHandler.js');
-const Validator = require('./CheckFields.js');
-const Path = require('./Path.js');
+const Validator = require('./RegistrationFieldsValidator.js');
+const Path = require('./PathProvider.js');
 
 // indica di fare il parse del body di tutte le richieste
 // in entrata come JSON object
@@ -28,14 +27,6 @@ const prepareAndExecute = function(handlerType, req, res) {
 app.get('/appinfo', function(req, res) {
    console.log('handle appinfo');
    prepareAndExecute(AppInfo, req, res);
-});
-
-app.get('/beacons', function(req, res) {
-   console.log('handle beacons');
-   var handler = new Beacons;
-   handler.request  = req;
-   handler.response = res;
-   handler.execute();
 });
 
 app.post('/login', function(req, res) {
