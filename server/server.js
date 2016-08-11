@@ -5,7 +5,6 @@ var bodyParser = require('body-parser');
 var app = express();
 
 const AppInfo = require('./AppInfoHandler.js');
-const Beacons = require('./BeaconRequestHandler.js');
 const Login   = require('./LoginHandler.js');
 const Logout  = require('./Logout.js');
 const PathsResults = require('./PathsResults.js');
@@ -28,14 +27,6 @@ const prepareAndExecute = function(handlerType, req, res) {
 app.get('/appinfo', function(req, res) {
    console.log('handle appinfo');
    prepareAndExecute(AppInfo, req, res);
-});
-
-app.get('/beacons', function(req, res) {
-   console.log('handle beacons');
-   var handler = new Beacons;
-   handler.request  = req;
-   handler.response = res;
-   handler.execute();
 });
 
 app.post('/login', function(req, res) {
