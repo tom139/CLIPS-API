@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('./db.js');
+var db = require('./DBHandler.js');
 const fs = require('fs-promise');
 const testPath = require('./config.js').proofPath;
 const algorithmPath = require('./config.js').algorithmPath;

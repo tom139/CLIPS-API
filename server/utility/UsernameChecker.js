@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('../db.js');
+var db = require('../DBHandler.js');
 
 function isAvailable(username) {
    var promise = new Promise(function(resolve, reject) {

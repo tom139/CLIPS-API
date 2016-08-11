@@ -4,14 +4,14 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
-const AppInfo = require('./AppInfoHandler.js');
+const AppInfo = require('./AppInfoProvider.js');
 const Login   = require('./LoginHandler.js');
-const Logout  = require('./Logout.js');
-const PathsResults = require('./PathsResults.js');
-const Buildings  = require('./Buildings.js');
+const Logout  = require('./LogoutHandler.js');
+const PathsResults = require('./PathResultsProvider.js');
+const Buildings  = require('./BuildingsProvider.js');
 const Registration = require('./RegistrationHandler.js');
-const Validator = require('./CheckFields.js');
-const Path = require('./Path.js');
+const Validator = require('./RegistrationFieldsValidator.js');
+const Path = require('./PathProvider.js');
 
 // indica di fare il parse del body di tutte le richieste
 // in entrata come JSON object

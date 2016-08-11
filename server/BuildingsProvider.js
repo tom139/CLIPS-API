@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('./db.js');
+var db = require('./DBHandler.js');
 var SQLRequestHandler = require('./SQLRequestHandler.js');
 
 function distance(client, building) {
