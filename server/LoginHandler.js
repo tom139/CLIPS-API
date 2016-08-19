@@ -176,7 +176,8 @@ function BeaconRequest() {
          } else {
             console.log('l\'utente non esiste!');
             handler.response.status(401).send({
-               message: "l'utente non esiste"
+               errorCode: 401,
+               debugMessage: "l'utente non esiste"
             });
          }
       }, function(error) {
