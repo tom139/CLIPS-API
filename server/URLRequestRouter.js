@@ -73,7 +73,7 @@ app.get('/path/:pathID', function(req, res) {
    handler.request = req;
    handler.response = res;
    handler.execute(req.params.pathID);
-})
+});
 
 module.exports.start = function() {
   app.listen(1234);
