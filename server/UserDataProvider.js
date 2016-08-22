@@ -20,7 +20,7 @@ function GetUserData() {
             token: token
          }).then(function(authTokens) {
             console.log('authTokens = ', authTokens);
-            if (authTokens.count == 1) {
+            if (authTokens.length == 1) {
                resolve(authTokens[0].userID);
             } else if (authTokens.count == 0) {
                const error = createResponseError('no userID associated with token ' + token, 461, null, null);
@@ -42,7 +42,7 @@ function GetUserData() {
          db().select('email', 'username').from('User').where({
             id: userID
          }).then(function(users) {
-            if (users.count == 1) {
+            if (users.length == 1) {
                resolve(users[0]);
             } else if (user.count == 0) {
                const error = createResponseError('no user associated with id ' + userID, 550, null, null);
