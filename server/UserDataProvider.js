@@ -78,8 +78,8 @@ function GetUserData() {
    };
 
    this.sendData = function(data) {
-      console.log('sendData(',data,')');
       console.log('response = ', this.response);
+      console.log('sendData(',data,')');
       this.response.status(200).send(data);
    };
 
