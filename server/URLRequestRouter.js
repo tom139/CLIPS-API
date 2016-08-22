@@ -12,6 +12,7 @@ const Buildings  = require('./BuildingsProvider.js');
 const Registration = require('./RegistrationHandler.js');
 const Validator = require('./RegistrationFieldsValidator.js');
 const Path = require('./PathProvider.js');
+const UserData = require('./UserDataProvider.js');
 
 // indica di fare il parse del body di tutte le richieste
 // in entrata come JSON object
@@ -73,6 +74,11 @@ app.get('/path/:pathID', function(req, res) {
    handler.request = req;
    handler.response = res;
    handler.execute(req.params.pathID);
+});
+
+app.get('/userData', function(req, res) {
+   console.log('handle userData request');
+   prepareAndExecute(UserData.get, req, res);
 });
 
 module.exports.start = function() {
