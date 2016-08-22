@@ -21,7 +21,7 @@ function GetUserData() {
             console.log('authTokens = ', authTokens);
             if (authTokens.length == 1) {
                resolve(authTokens[0].userID);
-            } else if (authTokens.count == 0) {
+            } else if (authTokens.length == 0) {
                const error = createResponseError('no userID associated with token ' + token, 461, null, null);
                reject(error);
             } else {
@@ -42,7 +42,7 @@ function GetUserData() {
          }).then(function(users) {
             if (users.length == 1) {
                resolve(users[0]);
-            } else if (user.count == 0) {
+            } else if (user.length == 0) {
                const error = createResponseError('no user associated with id ' + userID, 550, null, null);
                reject(error);
             } else {
