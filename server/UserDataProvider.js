@@ -25,7 +25,7 @@ function GetUserData() {
                const error = createResponseError('no userID associated with token ' + token, 461, null, null);
                reject(error);
             } else {
-               const error = createResponseError('no multiple userID associated with token ' + token, 505, null, null);
+               const error = createResponseError('multiple userID associated with token ' + token, 505, null, null);
                reject(error);
             }
          }, function(knexError) {
