@@ -79,6 +79,7 @@ function GetUserData() {
 
    this.sendData = function(data) {
       console.log('sendData(',data,')');
+      console.log('response = ', this.response);
       this.response.status(200).send(data);
    };
 
