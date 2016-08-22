@@ -1,6 +1,7 @@
 'use strict';
 
 const db = require('./DBHandler.js');
+const URLRequestHandler = require('./URLRequestHandler.js');
 
 function createResponseError(error, code, user, debugInfo) {
    return {
@@ -88,5 +89,7 @@ function GetUserData() {
       .then(this.sendData,  this.handleError);
    };
 };
+
+GetUserData.prototype = new URLRequestHandler;
 
 exports.get = GetUserData;
