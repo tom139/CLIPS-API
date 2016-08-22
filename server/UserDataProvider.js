@@ -26,8 +26,8 @@ function GetUserData() {
                const error = createResponseError('no multiple userID associated with token ' + token, 505, null, null);
                reject(error);
             }
-         }, function(error) {
-            const error = createResponseError('impossible to retrieve userID from token '+token, 550, null, error);
+         }, function(knexError) {
+            const error = createResponseError('impossible to retrieve userID from token '+token, 550, null, knexError);
             reject(error);
          });
       });
@@ -47,8 +47,8 @@ function GetUserData() {
                const error = createResponseError('no multiple users associated with id ' + userID, 505, null, null);
                reject(error);
             }
-         }, function(error) {
-            const error = createResponseError('impossible to retrieve user data from id '+userID, 550, null, error);
+         }, function(knexError) {
+            const error = createResponseError('impossible to retrieve user data from id '+userID, 550, null, knexError);
             reject(error);
          });
       });
