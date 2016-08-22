@@ -13,6 +13,7 @@ function createResponseError(error, code, user, debugInfo) {
 
 function GetUserData() {
    this.getUserID = function(token) {
+      console.log('getUserID(',token,')');
       return new Promise(function(resolve, reject) {
          db().from('AuthToken').where({
             token: token
@@ -34,6 +35,7 @@ function GetUserData() {
    };
 
    this.userData = function(userID) {
+      console.log('userData(',userID,')');
       return new Promise(function(resolve, reject) {
          db().select('email', 'username').from('User').where({
             id: userID
@@ -55,11 +57,13 @@ function GetUserData() {
    };
 
    this.handleError = function(error) {
+      console.log('handleError(',error,')');
       this.response.status(error.errorCode).send(error);
       console.error(error);
    };
 
    this.getToken = function() {
+      console.log('getToken()');
       return new Promise(function(resolve, reject) {
          var token = this.token();
          if (token) {
@@ -72,10 +76,12 @@ function GetUserData() {
    };
 
    this.sendData = function(data) {
+      console.log('sendData(',data,')');
       this.response.status(200).send(data);
    };
 
    this.execute = function() {
+      console.log('start executing');
       this.getToken()
       .then(this.getUserID, this.handleError)
       .then(this.userData,  this.handleError)
