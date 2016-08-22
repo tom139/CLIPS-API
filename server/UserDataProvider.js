@@ -90,7 +90,9 @@ function GetUserData() {
       this.getToken()
       .then(this.getUserID, this.handleError)
       .then(this.userData,  this.handleError)
-      .then(this.sendData,  this.handleError);
+      .then(function(data) {
+         this.response.status(200).send(data);
+      }.bind(this),  this.handleError);
    };
 };
 
