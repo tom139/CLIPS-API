@@ -72,7 +72,7 @@ function GetUserData() {
             const error = createResponseError('no token found in header', 461, null, null);
             reject(error);
          }
-      });
+      }.bind(this));
    };
 
    this.sendData = function(data) {
