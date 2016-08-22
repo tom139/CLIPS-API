@@ -47,7 +47,7 @@ function GetUserData() {
                const error = createResponseError('no user associated with id ' + userID, 550, null, null);
                reject(error);
             } else {
-               const error = createResponseError('no multiple users associated with id ' + userID, 505, null, null);
+               const error = createResponseError('multiple users associated with id ' + userID, 505, null, null);
                reject(error);
             }
          }, function(knexError) {
