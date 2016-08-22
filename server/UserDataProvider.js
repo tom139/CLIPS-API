@@ -19,6 +19,7 @@ function GetUserData() {
          db().from('AuthToken').where({
             token: token
          }).then(function(authTokens) {
+            console.log('authTokens = ', authTokens);
             if (authTokens.count == 1) {
                resolve(authTokens[0].userID);
             } else if (authTokens.count == 0) {
