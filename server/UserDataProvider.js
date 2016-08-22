@@ -14,7 +14,6 @@ function createResponseError(error, code, user, debugInfo) {
 
 function GetUserData() {
    this.getUserID = function(token) {
-      console.log('getUserID(',token,')');
       return new Promise(function(resolve, reject) {
          db().from('AuthToken').where({
             token: token
@@ -37,7 +36,6 @@ function GetUserData() {
    };
 
    this.userData = function(userID) {
-      console.log('userData(',userID,')');
       return new Promise(function(resolve, reject) {
          db().select('email', 'username').from('User').where({
             id: userID
@@ -65,7 +63,6 @@ function GetUserData() {
    };
 
    this.getToken = function() {
-      console.log('getToken()');
       return new Promise(function(resolve, reject) {
          var token = this.token();
          if (token) {
@@ -77,22 +74,32 @@ function GetUserData() {
       }.bind(this));
    };
 
-   this.sendData = function(data) {
-      console.log('sendData.this', this);
-      // console.log('response = ', this.response);
-      console.log('sendData(',data,')');
-      this.response.status(200).send(data);
-   };
+   // this.sendData = function(data) {
+   //    console.log('sendData.this', this);
+   //    // console.log('response = ', this.response);
+   //    console.log('sendData(',data,')');
+   //    this.response.status(200).send(data);
+   // };
 
    this.execute = function() {
-      console.log('start executing');
-      console.log('execute.this = ', this);
       this.getToken()
-      .then(this.getUserID, this.handleError)
-      .then(this.userData,  this.handleError)
+      .then(this.getUserID, function(error) {
+         console.log('handleError(',error,')');
+         this.response.status(error.errorCode).send(error);
+         console.error(error);
+      }.bind(this))
+      .then(this.userData,  function(error) {
+         console.log('handleError(',error,')');
+         this.response.status(error.errorCode).send(error);
+         console.error(error);
+      }.bind(this))
       .then(function(data) {
          this.response.status(200).send(data);
-      }.bind(this),  this.handleError);
+      }.bind(this),  function(error) {
+         console.log('handleError(',error,')');
+         this.response.status(error.errorCode).send(error);
+         console.error(error);
+      }.bind(this));
    };
 };
 
