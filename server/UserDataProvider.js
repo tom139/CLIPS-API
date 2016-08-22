@@ -78,7 +78,7 @@ function GetUserData() {
    };
 
    this.sendData = function(data) {
-      console.log(this);
+      console.log('sendData.this', this);
       // console.log('response = ', this.response);
       console.log('sendData(',data,')');
       this.response.status(200).send(data);
@@ -86,6 +86,7 @@ function GetUserData() {
 
    this.execute = function() {
       console.log('start executing');
+      console.log('execute.this = ', this);
       this.getToken()
       .then(this.getUserID, this.handleError)
       .then(this.userData,  this.handleError)
