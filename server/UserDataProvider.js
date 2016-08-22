@@ -56,11 +56,11 @@ function GetUserData() {
       });
    };
 
-   this.handleError = function(error) {
-      console.log('handleError(',error,')');
-      this.response.status(error.errorCode).send(error);
-      console.error(error);
-   };
+   // this.handleError = function(error) {
+   //    console.log('handleError(',error,')');
+   //    this.response.status(error.errorCode).send(error);
+   //    console.error(error);
+   // };
 
    this.getToken = function() {
       return new Promise(function(resolve, reject) {
