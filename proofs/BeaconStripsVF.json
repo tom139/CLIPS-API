@@ -5,24 +5,29 @@
       "shuffleQuestions": false,
       "questions" : [
          {
+            "helpText": "Pensaci bene!",
             "question": "Viviana è l'unica ragazza del gruppo",
             "correctAnswer": false
          },
          {
+            "helpText": "La risposta è scontata…",
             "question": "Matteo Franco usa MS World",
             "correctAnswer": true
          },
          {
+            "helpText": "Mi sembra una risposta ovvia",
             "question": "Luca è un bravo programmatore",
             "correctAnswer": false
          },
          {
-           "question": "Enrico non sa cos'è Twitch",
-           "correctAnswer": false
+            "helpText": "E tu? Lo sai cos'è Twitch?",
+            "question": "Enrico non sa cos'è Twitch",
+            "correctAnswer": false
          },
          {
-           "question": "Cenze non sa il perché del suo soprannome",
-           "correctAnswer": true
+            "helpText": "Andrea detto Cenze o Cenze detto Andrea?",
+            "question": "Cenze non sa il perché del suo soprannome",
+            "correctAnswer": true
          }
       ]
    }

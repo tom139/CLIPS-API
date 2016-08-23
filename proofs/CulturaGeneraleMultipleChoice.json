@@ -6,26 +6,31 @@
       "shuffleQuestions": false,
       "questions" : [
          {
+            "helpText": "Non mi pare fosse bianco!",
             "question": "Di che colore era il cavallo bianco di Napoleone?",
             "answers" : ["Bianco", "Rosa", "Blu", "Rosso"],
             "correctIndex" : 0
          },
          {
+            "helpText": "5 + 5 = 55",
             "question": "5 + 5 = ",
             "answers" : ["9", "10", "11", "12"],
             "correctIndex": 1
          },
          {
+            "helpText": "Mi pare fosse Amici di Maria, no?",
             "question": "Qual è il programma preferito di Matteo Franco?",
             "answers" : ["StarUML", "Android Studio", "Paint", "MS World"],
             "correctIndex" : 3
          },
          {
+            "helpText": "Non farti ingannare dagli occhi a mandorla…",
             "question": "Dove è nato Napoleone Bonaparte?",
             "answers" : ["Italia", "Giappone", "Turchia", "Francia"],
             "correctIndex" : 0
          },
          {
+            "helpText": "Io pagherei ben di più!",
             "question": "Quanto saresti disposto a pagare per la fantastica app che stai usando?",
             "answers" : ["0.99€", "1.99€", "0", "Non la installo neanche se è gratis"],
             "correctIndex" : 3

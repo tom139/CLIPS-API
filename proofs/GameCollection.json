@@ -12,19 +12,22 @@
             "shuffleQuestions": false,
             "questions" : [
               {
-                "question": "Di che colore era il cavallo bianco di Napoleone",
-                "answers" : ["Bianco", "Rosa", "Blu", "Rosso"],
-                "correctIndex" : 0
+                 "helpText": "Non mi pare fosse bianco!",
+                 "question": "Di che colore era il cavallo bianco di Napoleone",
+                 "answers" : ["Bianco", "Rosa", "Blu", "Rosso"],
+                 "correctIndex" : 0
               },
               {
-                "question": "5 + 5 = ",
-                "answers" : ["9", "10", "11", "12"],
-                "correctIndex": 1
+                 "helpText": "5 + 5 = 55",
+                 "question": "5 + 5 = ",
+                 "answers" : ["9", "10", "11", "12"],
+                 "correctIndex": 1
               },
               {
-                "question": "Qual è il programma preferito di Matteo Franco",
-                "answers" : ["StarUML", "Android Studio", "Paint", "MS World"],
-                "correntIndex" : 2
+                 "helpText": "Mi pare fosse Amici di Maria, no?",
+                 "question": "Qual è il programma preferito di Matteo Franco",
+                 "answers" : ["StarUML", "Android Studio", "Paint", "MS World"],
+                 "correntIndex" : 2
               }
             ]
           }
@@ -36,16 +39,19 @@
             "shuffleQuestions": false,
             "questions" : [
               {
-                "question": "Napoleone Bonaparte era italiano",
-                "correctAnswer": true
+                 "helpText": "…mmm…",
+                 "question": "Napoleone Bonaparte era italiano",
+                 "correctAnswer": true
               },
               {
-                "question": "Matteo Franco usa MS World",
-                "correctAnswer": true
+                 "helpText": "Eccerto!",
+                 "question": "Matteo Franco usa MS World",
+                 "correctAnswer": true
               },
               {
-                "question": "Luca è un bravo programmatore",
-                "correctAnswer": false
+                 "helpText": "Se va là…",
+                 "question": "Luca è un bravo programmatore",
+                 "correctAnswer": false
               }
             ]
           }
