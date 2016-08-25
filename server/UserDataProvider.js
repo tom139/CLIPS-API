@@ -17,11 +17,14 @@ function createResponseError(error, code, user, debugInfo) {
 function UserDataRequest() {
 
    this.getUserID = function(token) {
+      console.log('1 - token: ', token);
       return new Promise(function(resolve, reject) {
+         console.log('2 - token: ', token);
          var t = token;
          db().from('AuthToken').where({
             token: t
          }).then(function(authTokens) {
+            console.log('3 - token: ', token);
             console.log('authTokens = ', authTokens);
             if (authTokens.length == 1) {
                resolve(authTokens[0].userID);
@@ -33,6 +36,7 @@ function UserDataRequest() {
                reject(error);
             }
          }.bind(token), function(knexError) {
+            console.log('4 - token: ', token);
             const error = createResponseError('impossible to retrieve userID from token '+token, 550, null, knexError);
             reject(error);
          }.bind(token));
