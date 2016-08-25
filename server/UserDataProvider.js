@@ -183,7 +183,7 @@ function PostUserData() {
       });
    };
 
-   this.execute() {
+   this.execute = function() {
       this.getNewData()
       .then(function(data) {
          var context = {
