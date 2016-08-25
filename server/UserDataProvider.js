@@ -214,7 +214,7 @@ function PostUserData() {
                console.log('didSave');
                context.this.response.status(200).send(data);
             }.bind(context), function(error) {
-               console.log('unable to save');
+               console.log('unable to save with error:', error);
                context.this.response.status(error.errorCode).send(error);
             }.bind(context));
          }.bind(context), function(error) {
