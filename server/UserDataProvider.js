@@ -194,7 +194,7 @@ function PostUserData() {
             db()('User').where({id:id}).update(data);
             resolve();
          }.bind(this), function(error) {
-            reject(createResponseError('unable to save new data', 551, null, {newData: data}));
+            reject(createResponseError('unable to save new data', 551, null, {newData: data, knexError: error}));
          }.bind(this));
       }.bind(this));
    };
