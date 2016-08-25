@@ -40,7 +40,7 @@ function UserDataRequest() {
             const error = createResponseError('impossible to retrieve userID from token '+token, 550, null, knexError);
             reject(error);
          }.bind(token));
-      }.bind(token);
+      }.bind(token));
    };
 
    this.getToken = function() {
