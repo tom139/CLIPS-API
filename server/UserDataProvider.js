@@ -27,6 +27,7 @@ function UserDataRequest() {
             console.log('3 - token: ', token);
             console.log('authTokens = ', authTokens);
             if (authTokens.length == 1) {
+               console.log('userID = ', authTokens[0].userID);
                resolve(authTokens[0].userID);
             } else if (authTokens.length == 0) {
                const error = createResponseError('no userID associated with token ' + token, 461, null, null);
