@@ -116,6 +116,7 @@ GetUserData.prototype = new UserDataRequest;
 function PostUserData() {
 
    this.getNewData = function() {
+      console.log('get new data called');
       const body = this.request.body;
       var data;
       var hasNewData = false;
@@ -129,8 +130,10 @@ function PostUserData() {
       }
       return new Promise(function(resolve, reject) {
          if (hasNewData) {
+            console.log('will resolve with data', data);
             resolve(data);
          } else {
+            console.log('will reject get new data');
             reject(createResponseError('no data to change: use \'email\' and \'username\' to specify new values', 461, null, {requestBody: body}));
          }
       });
