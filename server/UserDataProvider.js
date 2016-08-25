@@ -31,11 +31,11 @@ function UserDataRequest() {
                const error = createResponseError('multiple userID associated with token ' + token, 505, null, null);
                reject(error);
             }
-         }, function(knexError) {
+         }.bind(token), function(knexError) {
             const error = createResponseError('impossible to retrieve userID from token '+token, 550, null, knexError);
             reject(error);
-         });
-      });
+         }.bind(token));
+      }.bind(token));
    };
 
    this.getToken = function() {
