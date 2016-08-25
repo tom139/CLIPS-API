@@ -140,6 +140,7 @@ function PostUserData() {
    };
 
    this.validateData = function(data) {
+      console.log('sarting validation...');
       var promises = [];
       if (data.username) {
          promises.push(this.validateUsername(data.username));
@@ -147,6 +148,7 @@ function PostUserData() {
       if (data.email) {
          promises.push(this.validateEmail(data.email));
       }
+      console.log('did create ' + promises.length + ' promises.');
       return Promise.all(promises);
    }
 
