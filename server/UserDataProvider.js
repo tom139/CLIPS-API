@@ -171,7 +171,7 @@ function PostUserData() {
       });
    };
 
-   this.saveData(data) {
+   this.saveData = function(data) {
       return new Promise(function(resolve, reject) {
          this.getUserID()
          .then(function(id) {
