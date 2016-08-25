@@ -2,6 +2,8 @@
 
 const db = require('./DBHandler.js');
 const URLRequestHandler = require('./URLRequestHandler.js');
+const UsernameValidator = require('./utility/UsernameChecker.js');
+const EmailValidator = require('./utility/EmailChecker.js');
 
 function createResponseError(error, code, user, debugInfo) {
    return {
@@ -12,13 +14,14 @@ function createResponseError(error, code, user, debugInfo) {
    };
 };
 
-function GetUserData() {
+function UserDataRequest() {
+
    this.getUserID = function(token) {
       return new Promise(function(resolve, reject) {
+         var t = token;
          db().from('AuthToken').where({
-            token: token
+            token: t
          }).then(function(authTokens) {
-            console.log('authTokens = ', authTokens);
             if (authTokens.length == 1) {
                resolve(authTokens[0].userID);
             } else if (authTokens.length == 0) {
@@ -28,12 +31,29 @@ function GetUserData() {
                const error = createResponseError('multiple userID associated with token ' + token, 505, null, null);
                reject(error);
             }
-         }, function(knexError) {
+         }.bind(token), function(knexError) {
             const error = createResponseError('impossible to retrieve userID from token '+token, 550, null, knexError);
             reject(error);
-         });
-      });
+         }.bind(token));
+      }.bind(token));
    };
+
+   this.getToken = function() {
+      return new Promise(function(resolve, reject) {
+         var token = this.token();
+         if (token) {
+            resolve(token);
+         } else {
+            const error = createResponseError('no token found in header', 461, null, null);
+            reject(error);
+         }
+      }.bind(this));
+   };
+};
+
+UserDataRequest.prototype = new URLRequestHandler;
+
+function GetUserData() {
 
    this.userData = function(userID) {
       return new Promise(function(resolve, reject) {
@@ -61,18 +81,6 @@ function GetUserData() {
    //    this.response.status(error.errorCode).send(error);
    //    console.error(error);
    // };
-
-   this.getToken = function() {
-      return new Promise(function(resolve, reject) {
-         var token = this.token();
-         if (token) {
-            resolve(token);
-         } else {
-            const error = createResponseError('no token found in header', 461, null, null);
-            reject(error);
-         }
-      }.bind(this));
-   };
 
    // this.sendData = function(data) {
    //    console.log('sendData.this', this);
@@ -103,6 +111,109 @@ function GetUserData() {
    };
 };
 
-GetUserData.prototype = new URLRequestHandler;
+GetUserData.prototype = new UserDataRequest;
 
-exports.get = GetUserData;
+function PostUserData() {
+
+   this.getNewData = function() {
+      const body = this.request.body;
+      var data = {};
+      var hasNewData = false;
+      if (body.hasOwnProperty('email')) {
+         data.email = body.email;
+         hasNewData = true;
+      }
+      if (body.hasOwnProperty('username')) {
+         data.username = body.username;
+         hasNewData = true;
+      }
+      return new Promise(function(resolve, reject) {
+         if (hasNewData) {
+            resolve(data);
+         } else {
+            reject(createResponseError('no data to change: use \'email\' and \'username\' to specify new values', 461, null, {requestBody: body}));
+         }
+      });
+   };
+
+   this.validateData = function(data) {
+      var promises = [];
+      if (data.username) {
+         promises.push(this.validateUsername(data.username));
+      }
+      if (data.email) {
+         promises.push(this.validateEmail(data.email));
+      }
+      return Promise.all(promises);
+   }
+
+   this.validateUsername = function(username) {
+      return new Promise(function(resolve, reject) {
+         UsernameValidator(username).then(function(isAvailable) {
+            if (isAvailable) {
+               resolve();
+            } else {
+               reject(createResponseError('username ' + username + ' is not valid', 461, null, {requestBody: body}));
+            }
+         }, function(error) {
+            reject(createResponseError('error checking if username is valid', 550, null, error));
+         })
+      });
+   };
+
+   this.validateEmail = function(email) {
+      return new Promise(function(resolve, reject) {
+         if (EmailValidator.isValid(email)) {
+            resolve();
+         } else {
+            reject(createResponseError('email ' + email + ' is not valid', 461, null, {requestBody: body}));
+         }
+      });
+   };
+
+   this.saveData = function(data) {
+      return new Promise(function(resolve, reject) {
+         this.getToken()
+         .then(this.getUserID, function(error) {
+            console.log('handleError(',error,')');
+            this.response.status(error.errorCode).send(error);
+            console.error(error);
+         })
+         .then(function(id) {
+            db()('User').where({id:id}).update(data).then(resolve, function(error) {
+               reject(createResponseError('knex error updating user data', 551, null, {newData: data, knexError: error}));
+            });
+         }.bind(this), function(error) {
+            reject(createResponseError('unable to save new data', 551, null, {newData: data, knexError: error}));
+         }.bind(this));
+      }.bind(this));
+   };
+
+   this.execute = function() {
+      this.getNewData()
+      .then(function(data) {
+         var context = {
+            data: data,
+            this: this
+         };
+         this.validateData(data).then(function() {
+            context.this.saveData(context.data).then(function() {
+               context.this.response.status(200).send(data);
+            }.bind(context), function(error) {
+               console.log('unable to save with error:', error);
+               context.this.response.status(error.errorCode).send(error);
+            }.bind(context));
+         }.bind(context), function(error) {
+            context.this.response.status(error.errorCode).send(error);
+         }.bind(context));
+      }.bind(this), function(error) {
+         console.log('error with new data:', error);
+         this.response.status(error.errorCode).send(error);
+      }.bind(this));
+   };
+};
+
+PostUserData.prototype = new UserDataRequest;
+
+exports.get  = GetUserData;
+exports.post = PostUserData;
