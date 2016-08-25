@@ -156,6 +156,7 @@ function PostUserData() {
       console.log('will create promise to validate username');
       return new Promise(function(resolve, reject) {
          console.log('start fulfilling promise to validate username');
+         console.log(UsernameValidator.isAvailable);
          UsernameValidator.isAvailable(username).then(function(isAvailable) {
             console.log('BANANANANANANAN');
             if (isAvailable) {
