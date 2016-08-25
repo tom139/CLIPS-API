@@ -18,8 +18,9 @@ function UserDataRequest() {
 
    this.getUserID = function(token) {
       return new Promise(function(resolve, reject) {
+         var t = token;
          db().from('AuthToken').where({
-            token: token
+            token: t
          }).then(function(authTokens) {
             console.log('authTokens = ', authTokens);
             if (authTokens.length == 1) {
