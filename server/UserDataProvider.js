@@ -202,8 +202,10 @@ function PostUserData() {
             console.error(error);
          })
          .then(function(id) {
-            db()('User').where({id:id}).update(data);
-            resolve();
+            console.log('id to change = ', id);
+            db()('User').where({id:id}).update(data).then(resolve, function(error) {
+               reject(createResponseError('knex error updating user data', 551, null, {newData: data, knexError: error}));
+            });
          }.bind(this), function(error) {
             reject(createResponseError('unable to save new data', 551, null, {newData: data, knexError: error}));
          }.bind(this));
