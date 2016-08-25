@@ -194,7 +194,12 @@ function PostUserData() {
 
    this.saveData = function(data) {
       return new Promise(function(resolve, reject) {
-         this.getUserID()
+         this.getToken()
+         .then(this.getUserID(), function(error) {
+            console.log('handleError(',error,')');
+            this.response.status(error.errorCode).send(error);
+            console.error(error);
+         })
          .then(function(id) {
             db()('User').where({id:id}).update(data);
             resolve();
