@@ -81,6 +81,11 @@ app.get('/userData', function(req, res) {
    prepareAndExecute(UserData.get, req, res);
 });
 
+app.post('/userData', function(req, res) {
+   console.log('handle userData request');
+   prepareAndExecute(UserData.post, req, res);
+});
+
 module.exports.start = function() {
   app.listen(1234);
 };

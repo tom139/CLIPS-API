@@ -207,4 +207,5 @@ function PostUserData() {
 
 PostUserData.prototype = new UserDataRequest;
 
-exports.get = GetUserData;
+exports.get  = GetUserData;
+exports.post = PostUserData;
