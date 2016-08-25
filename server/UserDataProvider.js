@@ -153,24 +153,33 @@ function PostUserData() {
    }
 
    this.validateUsername = function(username) {
+      console.log('will create promise to validate username');
       return new Promise(function(resolve, reject) {
+         console.log('start fulfilling promise to validate username');
          UsernameValidator.isAvailable(username).then(function(isAvailable) {
             if (isAvailable) {
+               console.log('will resolve promise for username');
                resolve();
             } else {
+               console.log('will reject promise for username');
                reject(createResponseError('username ' + username + ' is not valid', 461, null, {requestBody: body}));
             }
          }, function(error) {
+            console.log('error checking for username validation');
             reject(createResponseError('error checking if username is valid', 550, null, error));
          })
       });
    };
 
    this.validateEmail = function(email) {
+      console.log('will create promise to validate email');
       return new Promise(function(resolve, reject) {
+         console.log('start fulfilling promise to validate email');
          if (EmailValidator.isValid(email)) {
+            console.log('will resolve promise for email');
             resolve();
          } else {
+            console.log('will reject promise for email');
             reject(createResponseError('email ' + email + ' is not valid', 461, null, {requestBody: body}));
          }
       });
