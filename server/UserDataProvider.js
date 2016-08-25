@@ -180,7 +180,7 @@ function PostUserData() {
          }.bind(this), function(error) {
             reject(createResponseError('unable to save new data', 551, null, {newData: data}));
          }.bind(this));
-      );
+      });
    };
 
    this.execute() {
