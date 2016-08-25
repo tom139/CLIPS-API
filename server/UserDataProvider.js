@@ -40,7 +40,7 @@ function UserDataRequest() {
             const error = createResponseError('impossible to retrieve userID from token '+token, 550, null, knexError);
             reject(error);
          }.bind(token));
-      }.bind(token));
+      }.bind(token);
    };
 
    this.getToken = function() {
@@ -195,7 +195,7 @@ function PostUserData() {
    this.saveData = function(data) {
       return new Promise(function(resolve, reject) {
          this.getToken()
-         .then(this.getUserID(), function(error) {
+         .then(this.getUserID, function(error) {
             console.log('handleError(',error,')');
             this.response.status(error.errorCode).send(error);
             console.error(error);
