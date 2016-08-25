@@ -118,7 +118,7 @@ function PostUserData() {
    this.getNewData = function() {
       console.log('get new data called');
       const body = this.request.body;
-      var data;
+      var data = {};
       var hasNewData = false;
       if (body.hasOwnProperty('email')) {
          data.email = body.email;
@@ -208,6 +208,7 @@ function PostUserData() {
             context.this.response.status(error.errorCode).send(error);
          }.bind(context));
       }.bind(this), function(error) {
+         console.log('error with new data:', error);
          this.response.status(error.errorCode).send(error);
       });
    };
