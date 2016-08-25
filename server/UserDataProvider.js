@@ -209,7 +209,7 @@ function PostUserData() {
       }.bind(this), function(error) {
          console.log('error with new data:', error);
          this.response.status(error.errorCode).send(error);
-      });
+      }.bind(this));
    };
 };
 
