@@ -184,21 +184,26 @@ function PostUserData() {
    };
 
    this.execute = function() {
+      console.log('execute');
       this.getNewData()
       .then(function(data) {
          var context = {
             data: data,
             this: this
          };
+         console.log('will validate');
          this.validateData(data).then(function() {
+            console.log('didValidate\nwillSave');
             context.this.saveData(context.data).then(function() {
+               console.log('didSave');
                context.this.response.status(200).send(data);
             }.bind(context), function(error) {
+               console.log('unable to save');
                context.this.response.status(error.errorCode).send(error);
-            })
+            }.bind(context));
          }.bind(context), function(error) {
             context.this.response.status(error.errorCode).send(error);
-         }.bind(context))
+         }.bind(context));
       }.bind(this), function(error) {
          this.response.status(error.errorCode).send(error);
       });
