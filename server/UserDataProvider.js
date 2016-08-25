@@ -17,17 +17,12 @@ function createResponseError(error, code, user, debugInfo) {
 function UserDataRequest() {
 
    this.getUserID = function(token) {
-      console.log('1 - token: ', token);
       return new Promise(function(resolve, reject) {
-         console.log('2 - token: ', token);
          var t = token;
          db().from('AuthToken').where({
             token: t
          }).then(function(authTokens) {
-            console.log('3 - token: ', token);
-            console.log('authTokens = ', authTokens);
             if (authTokens.length == 1) {
-               console.log('userID = ', authTokens[0].userID);
                resolve(authTokens[0].userID);
             } else if (authTokens.length == 0) {
                const error = createResponseError('no userID associated with token ' + token, 461, null, null);
@@ -37,7 +32,6 @@ function UserDataRequest() {
                reject(error);
             }
          }.bind(token), function(knexError) {
-            console.log('4 - token: ', token);
             const error = createResponseError('impossible to retrieve userID from token '+token, 550, null, knexError);
             reject(error);
          }.bind(token));
@@ -122,7 +116,6 @@ GetUserData.prototype = new UserDataRequest;
 function PostUserData() {
 
    this.getNewData = function() {
-      console.log('get new data called');
       const body = this.request.body;
       var data = {};
       var hasNewData = false;
@@ -136,17 +129,14 @@ function PostUserData() {
       }
       return new Promise(function(resolve, reject) {
          if (hasNewData) {
-            console.log('will resolve with data', data);
             resolve(data);
          } else {
-            console.log('will reject get new data');
             reject(createResponseError('no data to change: use \'email\' and \'username\' to specify new values', 461, null, {requestBody: body}));
          }
       });
    };
 
    this.validateData = function(data) {
-      console.log('sarting validation...');
       var promises = [];
       if (data.username) {
          promises.push(this.validateUsername(data.username));
@@ -154,40 +144,28 @@ function PostUserData() {
       if (data.email) {
          promises.push(this.validateEmail(data.email));
       }
-      console.log('did create ' + promises.length + ' promises.');
       return Promise.all(promises);
    }
 
    this.validateUsername = function(username) {
-      console.log('will create promise to validate username');
       return new Promise(function(resolve, reject) {
-         console.log('start fulfilling promise to validate username');
-         console.log(UsernameValidator.isAvailable);
          UsernameValidator(username).then(function(isAvailable) {
-            console.log('BANANANANANANAN');
             if (isAvailable) {
-               console.log('will resolve promise for username');
                resolve();
             } else {
-               console.log('will reject promise for username');
                reject(createResponseError('username ' + username + ' is not valid', 461, null, {requestBody: body}));
             }
          }, function(error) {
-            console.log('error checking for username validation');
             reject(createResponseError('error checking if username is valid', 550, null, error));
          })
       });
    };
 
    this.validateEmail = function(email) {
-      console.log('will create promise to validate email');
       return new Promise(function(resolve, reject) {
-         console.log('start fulfilling promise to validate email');
          if (EmailValidator.isValid(email)) {
-            console.log('will resolve promise for email');
             resolve();
          } else {
-            console.log('will reject promise for email');
             reject(createResponseError('email ' + email + ' is not valid', 461, null, {requestBody: body}));
          }
       });
@@ -202,7 +180,6 @@ function PostUserData() {
             console.error(error);
          })
          .then(function(id) {
-            console.log('id to change = ', id);
             db()('User').where({id:id}).update(data).then(resolve, function(error) {
                reject(createResponseError('knex error updating user data', 551, null, {newData: data, knexError: error}));
             });
@@ -213,18 +190,14 @@ function PostUserData() {
    };
 
    this.execute = function() {
-      console.log('execute');
       this.getNewData()
       .then(function(data) {
          var context = {
             data: data,
             this: this
          };
-         console.log('will validate');
          this.validateData(data).then(function() {
-            console.log('didValidate\nwillSave');
             context.this.saveData(context.data).then(function() {
-               console.log('didSave');
                context.this.response.status(200).send(data);
             }.bind(context), function(error) {
                console.log('unable to save with error:', error);
