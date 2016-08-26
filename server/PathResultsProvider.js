@@ -26,20 +26,20 @@ function PathsResultsHandler() {
                         var pathInfoQuery = db().select('title', 'buildingID').from('Path').where({
                            id: path.pathID
                         });
-                        Promise.all([proofsQuery, pathInfoQuery]).then(function([proofResults, pathInfo]) {
+                        Promise.all([proofsQuery, pathInfoQuery]).then(function([proofResults, pathInfos]) {
                            console.log('yeah! ', pathInfo);
                            console.log('path = ', path);
                            console.log('proofResults: ', proofResults);
                            path.proofResults = proofResults;
-                           var path = pathInfo[0];
-                           path.pathTitle = path.title;
+                           var pathInfo = pathInfos[0];
+                           path.pathTitle = pathInfo.title;
                            console.log('path = ', path);
-                           db().select().from('Building').where({id:path.buildingID}).then(function(buildings) {
+                           db().select().from('Building').where({id:pathInfo.buildingID}).then(function(buildings) {
                               path.buildingName = buildings[0].name;
                               resolve(path);
                            }.bind(path), reject.bind(this));
                         }.bind(path), reject.bind(this));
-                     }.bind(path)).bind(path);
+                     }.bind(path));
                      promises.push(promise);
                   }
                   console.log('did create promises: ', promises);
