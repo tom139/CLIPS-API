@@ -31,6 +31,7 @@ function PathsResultsHandler() {
                            path.proofResults = proofResults;
                            var path = pathInfo[0];
                            path.pathTitle = path.title;
+                           console.log('path = ', path);
                            db().select().from('Building').where({id:path.buildingID}).then(function(buildings) {
                               path.buildingName = buildings[0].name;
                               resolve(path);
