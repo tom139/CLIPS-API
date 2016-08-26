@@ -17,14 +17,19 @@ function PathsResultsHandler() {
                });
                pathsQuery.then(function(pathsResults) {
                   var promises = [];
+                  var pathInfos = [];
                   for (var path of pathsResults) {
                      var promise = new Promise(function(resolve, reject) {
                         var proofsQuery = db().select().from('ProofResult').where({
                            pathResultID: path.id
                         });
-                        proofsQuery.then(function(proofResults) {
+                        var pathInfoQuery = db().select('title').from('Path').where({
+                           id: path.pathID
+                        });
+                        Promise.all([proofsQuery, pathInfo]).then(function([proofResults, pathInfo]) {
                            console.log('proofResults: ', proofResults);
                            path.proofResults = proofResults;
+                           path.pathTitle = pathInfo
                            resolve(path);
                         }.bind(path), reject.bind(this));
                      });
