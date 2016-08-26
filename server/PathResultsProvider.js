@@ -188,7 +188,7 @@ function SavePathsResultsHandler() {
 
          if (missingFields.length > 0) {
             console.error('missingFields: ', missingFields);
-            this.response.status(461)({
+            this.response.status(461).send({
                errorCode: 461,
                errorMessage: missingFields[0] + ' is a required field',
                errorInfo: {
