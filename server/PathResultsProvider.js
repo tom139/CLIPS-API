@@ -26,9 +26,10 @@ function PathsResultsHandler() {
                         var pathInfoQuery = db().select('title', 'buildingID').from('Path').where({
                            id: path.pathID
                         });
+                        var context = path;
                         Promise.all([proofsQuery, pathInfoQuery]).then(function([proofResults, pathInfos]) {
                            console.log('yeah! ', pathInfo);
-                           console.log('path = ', path);
+                           console.log('path = ', context);
                            console.log('proofResults: ', proofResults);
                            path.proofResults = proofResults;
                            var pathInfo = pathInfos[0];
