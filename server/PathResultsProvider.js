@@ -39,7 +39,7 @@ function PathsResultsHandler() {
                               resolve(path);
                            }.bind(path), reject.bind(this));
                         }.bind(path), reject.bind(this));
-                     }.bind(path));
+                     }.bind(path)).bind(path);
                      promises.push(promise);
                   }
                   console.log('did create promises: ', promises);
