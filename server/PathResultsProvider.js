@@ -23,14 +23,18 @@ function PathsResultsHandler() {
                         var proofsQuery = db().select().from('ProofResult').where({
                            pathResultID: path.id
                         });
-                        var pathInfoQuery = db().select('title').from('Path').where({
+                        var pathInfoQuery = db().select('title', 'buildingID').from('Path').where({
                            id: path.pathID
                         });
                         Promise.all([proofsQuery, pathInfo]).then(function([proofResults, pathInfo]) {
                            console.log('proofResults: ', proofResults);
                            path.proofResults = proofResults;
-                           path.pathTitle = pathInfo
-                           resolve(path);
+                           var path = pathInfo[0];
+                           path.pathTitle = path.title;
+                           db().select().from('Building').where({id:path.buildingID}).then(function(buildings) {
+                              path.buildingName = buildings[0].name;
+                              resolve(path);
+                           }.bind(path), reject.bind(this));
                         }.bind(path), reject.bind(this));
                      });
                      promises.push(promise);
@@ -43,7 +47,7 @@ function PathsResultsHandler() {
                      response.status(200).send(pathsResults);
                   }.bind(response), function(error) {
                      console.error('error getting proof results: ', error);
-                     response.status(505).send({
+                     response.status(550).send({
                         errorCode: 505,
                         debugMessage: 'Error getting proof results',
                         errorInfo: error
