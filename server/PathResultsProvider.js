@@ -84,11 +84,11 @@ function SavePathsResultsHandler() {
    this.execute = function() {
       var token = this.token()
       if (!token) {
-         this.request.status(401).send({
+         this.request.status(460).send({
             errorCode: 401,
             debugMessage: 'You must provide a valid token',
          });
-         return
+         return;
       }
 
       var userID = UserID(token);
@@ -165,9 +165,9 @@ function SavePathsResultsHandler() {
          var data = this.request.body;
          var missingFields = [];
 
-         var pathID = data.pathId;
+         var pathID = data.pathID;
          if (!pathID) {
-            missingFields.push('pathId');
+            missingFields.push('pathID');
          }
          var startDate = data.startDate;
          if (!startDate) {
@@ -211,9 +211,9 @@ function SavePathsResultsHandler() {
          console.log('proofs = ', proofs);
 
          for (var proof of proofs) {
-            var proofId = proof.proofId;
-            if (!proofId) {
-               missingFields.push('proofId');
+            var proofID = proof.proofID;
+            if (!proofID) {
+               missingFields.push('proofID');
             }
             var startTime = proof.startTime;
             if (!startTime) {
@@ -242,7 +242,7 @@ function SavePathsResultsHandler() {
                return;
             } else {
                proofsData.push({
-                  pathID: pathID,
+                  proofID: proofID,
                   startTime: startTime,
                   endTime: endTime,
                   score: score
