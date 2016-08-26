@@ -28,13 +28,9 @@ function PathsResultsHandler() {
                         });
                         var context = path;
                         Promise.all([proofsQuery, pathInfoQuery]).then(function([proofResults, pathInfos]) {
-                           console.log('yeah! ', pathInfo);
-                           console.log('path = ', context);
-                           console.log('proofResults: ', proofResults);
                            path.proofResults = proofResults;
                            var pathInfo = pathInfos[0];
                            path.pathTitle = pathInfo.title;
-                           console.log('path = ', path);
                            db().select().from('Building').where({id:pathInfo.buildingID}).then(function(buildings) {
                               path.buildingName = buildings[0].name;
                               resolve(path);
@@ -43,11 +39,9 @@ function PathsResultsHandler() {
                      }.bind(path));
                      promises.push(promise);
                   }
-                  console.log('did create promises: ', promises);
                   var all = Promise.all(promises);
                   var response = this.response;
                   all.then(function(pathsResults) {
-                     console.log('did end all promises');
                      response.status(200).send(pathsResults);
                   }.bind(response), function(error) {
                      console.error('error getting proof results: ', error);
