@@ -28,6 +28,7 @@ function PathsResultsHandler() {
                         });
                         Promise.all([proofsQuery, pathInfoQuery]).then(function([proofResults, pathInfo]) {
                            console.log('yeah! ', pathInfo);
+                           console.log('path = ', path);
                            console.log('proofResults: ', proofResults);
                            path.proofResults = proofResults;
                            var path = pathInfo[0];
