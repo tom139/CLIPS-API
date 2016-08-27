@@ -50,10 +50,12 @@ function setNewPassword(email) {
 
 function PasswordResetProvider() {
    this.execute = function() {
+      const reject  = this.sendError;
+      const success = this.success;
       this.getEmail()
-      .then(setNewPassword, this.sendError)
-      .then(sendEmail, this.sendError)
-      .then(this.success, this.sendError)
+      .then(setNewPassword, reject)
+      .then(sendEmail, reject)
+      .then(success, reject);
    };
 
    this.sendError = function(error) {
