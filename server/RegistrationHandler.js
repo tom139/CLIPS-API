@@ -105,7 +105,7 @@ function RegistrationRequestHandler() {
                   });
                }.bind(response));
             } else {
-               response.status.(460).send({
+               response.status(460).send({
                   errorCode: 461,
                   debugError: 'email is not valid'
                });
