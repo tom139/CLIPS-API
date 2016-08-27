@@ -13,6 +13,7 @@ const Registration = require('./RegistrationHandler.js');
 const Validator = require('./RegistrationFieldsValidator.js');
 const Path = require('./PathProvider.js');
 const UserData = require('./UserDataProvider.js');
+const PasswordReset = require('./PasswordResetHandler.js');
 
 // indica di fare il parse del body di tutte le richieste
 // in entrata come JSON object
@@ -84,6 +85,11 @@ app.get('/userData', function(req, res) {
 app.post('/userData', function(req, res) {
    console.log('handle userData request');
    prepareAndExecute(UserData.post, req, res);
+});
+
+app.post('/passwordReset', function(req, res) {
+   console.log('handle reset password request');
+   prepareAndExecute(PasswordReset, req, res);
 });
 
 module.exports.start = function() {

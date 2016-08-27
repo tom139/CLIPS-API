@@ -13,18 +13,28 @@ function checkEmail(email) {
             debugMessage: 'field not set'
          });
       } else {
-         if (Email.isValid(email)) {
-            resolve({
-               isValid: true
-            });
-         } else {
+         Email.checkEmail(email).then(function(isValid) {
+            if (isValid) {
+               resolve({
+                  isValid: true
+               });
+            } else {
+               resolve({
+                  isValid: false,
+                  reason: 'invalid email',
+                  debugMessage: 'invalid email',
+                  userMessage: 'L\'indirizzo email inserito non è valido'
+               });
+            }
+         }, function (error) {
             resolve({
                isValid: false,
-               reason: 'invalid email',
-               debugMessage: 'invalid email',
-               userMessage: 'L\'indirizzo email inserito non è valido'
+               reason: 'C\'è un problema con il server, riprova più tardi',
+               debugMessage: error.debugMessage,
+               userMessage: 'C\'è un problema con il server, riprova più tardi',
+               debugInfo: error
             });
-         }
+         });
       }
    });
 }
