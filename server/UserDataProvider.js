@@ -157,17 +157,21 @@ function PostUserData() {
             }
          }, function(error) {
             reject(createResponseError('error checking if username is valid', 550, null, error));
-         })
+         });
       });
    };
 
    this.validateEmail = function(email) {
       return new Promise(function(resolve, reject) {
-         if (EmailValidator.isValid(email)) {
-            resolve();
-         } else {
-            reject(createResponseError('email ' + email + ' is not valid', 461, null, {requestBody: body}));
-         }
+         EmailValidator.checkEmail(email).then(function(isValid) {
+            if (isValid) {
+               resolve();
+            } else {
+               reject(createResponseError('email ' + email + ' is not valid', 461, null, {requestBody: body}));
+            }
+         }, function(error) {
+            reject(createResponseError('error checking if email is valid', 461, null, {requestBody: body}));
+         });
       });
    };
 
