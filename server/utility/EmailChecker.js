@@ -17,7 +17,7 @@ function EmailChecker(email) {
 function checkEmail(email) {
    return new Promise(function(resolve, reject) {
       if (!validator.validate(email)) {
-         resolve(false)
+         resolve(false);
       }
       db().select().from('User').where({
          email: email
