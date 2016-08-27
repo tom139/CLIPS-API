@@ -39,7 +39,7 @@ function setNewPassword(email) {
       .then(function() {
          const sendingData = {
             email: email,
-            password: password
+            password: newData.password
          };
          resolve(sendingData);
       }, function(error) {
