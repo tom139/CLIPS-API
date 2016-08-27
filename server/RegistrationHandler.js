@@ -45,62 +45,71 @@ function RegistrationRequestHandler() {
          });
       } else {
          var response = this.response;
-         UsernameChecker(username).then(function(isValid) {
-            // console.log('isValid = ', isValid);
-            if (isValid) {
-               var query = db()('User').insert({
-                  username: username,
-                  email: email,
-                  password: password
-               });
-               query.then(function(userID) {
-                  // effettuare il login e restituire un token valido
-                  let token = Token.generate();
-                  var context = {
-                     token: token,
-                     data : {
+         emailChecker.checkEmail(email).then(function(emailIsValid) {
+            if (emailIsValid) {
+               UsernameChecker(username).then(function(isValid) {
+                  // console.log('isValid = ', isValid);
+                  if (isValid) {
+                     var query = db()('User').insert({
                         username: username,
                         email: email,
-                        id: userID[0]
-                     },
-                     response: response
-                  };
-                  var saveNewTokenQuery = db()('AuthToken').insert({
-                     token: token,
-                     userID: userID
-                  });
-                  saveNewTokenQuery.then(function(result) {
-                     context.response.status(200).send({
-                        token: context.token,
-                        userData: context.data
+                        password: password
                      });
-                  }. bind(context), function(error) {
-                     console.log('Error saving token: ', error);
-                     context.response.status(505).send({
-                        errorCode: 505,
-                        debugError: "unable to save new user's token"
+                     query.then(function(userID) {
+                        // effettuare il login e restituire un token valido
+                        let token = Token.generate();
+                        var context = {
+                           token: token,
+                           data : {
+                              username: username,
+                              email: email,
+                              id: userID[0]
+                           },
+                           response: response
+                        };
+                        var saveNewTokenQuery = db()('AuthToken').insert({
+                           token: token,
+                           userID: userID
+                        });
+                        saveNewTokenQuery.then(function(result) {
+                           context.response.status(200).send({
+                              token: context.token,
+                              userData: context.data
+                           });
+                        }. bind(context), function(error) {
+                           console.log('Error saving token: ', error);
+                           context.response.status(505).send({
+                              errorCode: 505,
+                              debugError: "unable to save new user's token"
+                           });
+                        }.bind(context));
+                     }.bind(response), function(error) {
+                        console.log('error saving user: ', error);
+                        response.status(505).send({
+                           errorCode: 505,
+                           debugError: "unable to save user"
+                        });
+                     }.bind(response));
+                  } else {
+                     console.log('username (', username, ') is NOT valid');
+                     response.status(461).send({
+                        errorCode: 461,
+                        debugError: "username is NOT valid (maybe not unique). Choose another!"
                      });
-                  }.bind(context));
+                  }
                }.bind(response), function(error) {
-                  console.log('error saving user: ', error);
+                  console.log('error checking username: ', error);
                   response.status(505).send({
                      errorCode: 505,
-                     debugError: "unable to save user"
+                     debugError: "errorCreating user " + error
                   });
                }.bind(response));
             } else {
-               console.log('username (', username, ') is NOT valid');
-               response.status(461).send({
+               response.status.(460).send({
                   errorCode: 461,
-                  debugError: "username is NOT valid (maybe not unique). Choose another!"
+                  debugError: 'email is not valid'
                });
             }
-         }.bind(response), function(error) {
-            console.log('error checking username: ', error);
-            response.status(505).send({
-               errorCode: 505,
-               debugError: "errorCreating user " + error
-            });
          }.bind(response));
       }
    };
