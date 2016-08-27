@@ -90,7 +90,7 @@ function RegistrationRequestHandler() {
                }.bind(response));
             } else {
                console.log('username (', username, ') is NOT valid');
-               response.status(200).send({
+               response.status(461).send({
                   errorCode: 461,
                   debugError: "username is NOT valid (maybe not unique). Choose another!"
                });
