@@ -53,9 +53,21 @@ function PasswordResetProvider() {
       const reject  = this.sendError;
       const success = this.success;
       this.getEmail()
-      .then(setNewPassword, reject)
-      .then(sendEmail, reject)
-      .then(success, reject);
+      .then(setNewPassword, function(error) {
+         console.error('from response : ', this.response);
+         console.error('should send error', error);
+         this.response.status(error.errorCode).send(error);
+      }.bind(this))
+      .then(sendEmail, function(error) {
+         console.error('from response : ', this.response);
+         console.error('should send error', error);
+         this.response.status(error.errorCode).send(error);
+      }.bind(this))
+      .then(success, function(error) {
+         console.error('from response : ', this.response);
+         console.error('should send error', error);
+         this.response.status(error.errorCode).send(error);
+      }.bind(this));
    };
 
    this.sendError = function(error) {
