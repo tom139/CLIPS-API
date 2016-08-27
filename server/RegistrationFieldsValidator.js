@@ -13,7 +13,7 @@ function checkEmail(email) {
             debugMessage: 'field not set'
          });
       } else {
-         Email.checkEmail(email).then(function(isValid), {
+         Email.checkEmail(email).then(function(isValid) {
             if (isValid) {
                resolve({
                   isValid: true
