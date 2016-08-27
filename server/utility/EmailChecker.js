@@ -8,7 +8,7 @@
 // }
 
 const validator = require('email-validator');
-const db = require('DBHandler.js');
+const db = require('../DBHandler.js');
 
 function EmailChecker(email) {
    return validator.validate(email);
