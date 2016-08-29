@@ -28,14 +28,15 @@ function PathsResultsHandler() {
                         });
                         var context = path;
                         Promise.all([proofsQuery, pathInfoQuery]).then(function([proofResults, pathInfos]) {
-                           path.proofResults = proofResults;
+                           context.proofResults = proofResults;
                            var pathInfo = pathInfos[0];
-                           path.pathTitle = pathInfo.title;
+                           context.pathTitle = pathInfo.title;
+                           var path = context;
                            db().select().from('Building').where({id:pathInfo.buildingID}).then(function(buildings) {
                               path.buildingName = buildings[0].name;
                               resolve(path);
-                           }.bind(path), reject.bind(this));
-                        }.bind(path), reject.bind(this));
+                           }/*.bind(path)*/, reject.bind(this));
+                        }/*.bind(path)*/, reject.bind(this));
                      }.bind(path));
                      promises.push(promise);
                   }
