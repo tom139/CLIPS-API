@@ -19,9 +19,7 @@ function PathsResultsHandler() {
                   var promises = [];
                   var pathInfos = [];
                   for (var path of pathsResults) {
-                     console.log('cycle start: ', path);
                      var promise = new Promise(function(resolve, reject) {
-                        console.log('in promise: ', path);
                         var proofsQuery = db().select().from('ProofResult').where({
                            pathResultID: path.id
                         });
@@ -36,7 +34,6 @@ function PathsResultsHandler() {
                            var path = context;
                            db().select().from('Building').where({id:pathInfo.buildingID}).then(function(buildings) {
                               path.buildingName = buildings[0].name;
-                              console.log('before resolve: ', path);
                               resolve(path);
                            }/*.bind(path)*/, reject.bind(this));
                         }/*.bind(path)*/, reject.bind(this));
