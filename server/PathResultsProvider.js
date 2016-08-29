@@ -19,6 +19,7 @@ function PathsResultsHandler() {
                   var promises = [];
                   var pathInfos = [];
                   for (var path of pathsResults) {
+                     console.log('path: ', path);
                      var promise = new Promise(function(resolve, reject) {
                         var proofsQuery = db().select().from('ProofResult').where({
                            pathResultID: path.id
