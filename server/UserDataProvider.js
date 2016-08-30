@@ -116,6 +116,7 @@ GetUserData.prototype = new UserDataRequest;
 function PostUserData() {
 
    this.getNewData = function() {
+      console.log('getNewData()');
       const body = this.request.body;
       var data = {};
       var hasNewData = false;
@@ -129,14 +130,17 @@ function PostUserData() {
       }
       return new Promise(function(resolve, reject) {
          if (hasNewData) {
+            console.log('getNewData.resolve');
             resolve(data);
          } else {
+            console.log('getNewData.reject');
             reject(createResponseError('no data to change: use \'email\' and \'username\' to specify new values', 461, null, {requestBody: body}));
          }
       });
    };
 
    this.validateData = function(data) {
+      console.log('validateData()');
       var promises = [];
       if (data.username) {
          promises.push(this.validateUsername(data.username));
@@ -148,8 +152,10 @@ function PostUserData() {
    }
 
    this.validateUsername = function(username) {
+      console.log('will validateUsername(' + username + ')');
       return new Promise(function(resolve, reject) {
          UsernameValidator(username).then(function(isAvailable) {
+            console.log('username is available:', isAvailable);
             if (isAvailable) {
                resolve();
             } else {
@@ -162,8 +168,10 @@ function PostUserData() {
    };
 
    this.validateEmail = function(email) {
+      console.log('will validateEmail(' + email + ')');
       return new Promise(function(resolve, reject) {
          EmailValidator.checkEmail(email).then(function(isValid) {
+            console.log('email is valid:', isValid);
             if (isValid) {
                resolve();
             } else {
