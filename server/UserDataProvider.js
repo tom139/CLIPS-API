@@ -167,7 +167,7 @@ function PostUserData() {
             } else {
                console.log('username will reject');
                console.log('createResponseError:', createResponseError);
-               reject();
+               reject(createResponseError('username is not valid', 461, null, {requestBody: body}));
             }
          }, function(error) {
             reject(createResponseError('error checking if username is valid', 550, null, error));
@@ -231,7 +231,6 @@ function PostUserData() {
          }.bind(context), function(error) {
             console.log('oops');
             console.log('4 - context:', context);
-            console.log('error =', error);
             context.this.response.status(error.errorCode).send(error);
          }.bind(context));
       }.bind(this), function(error) {
