@@ -208,17 +208,23 @@ function PostUserData() {
             data: data,
             this: this
          };
+         console.log('execute will validateData(data)\ndata:', data);
          this.validateData(data).then(function() {
+            console.log('1 - context:', context);
             context.this.saveData(context.data).then(function() {
+               console.log('2 - context:', context);
                context.this.response.status(200).send(data);
             }.bind(context), function(error) {
+               console.log('3 - context:', context);
                console.log('unable to save with error:', error);
                context.this.response.status(error.errorCode).send(error);
             }.bind(context));
          }.bind(context), function(error) {
+            console.log('4 - context:', context);
             context.this.response.status(error.errorCode).send(error);
          }.bind(context));
       }.bind(this), function(error) {
+         console.log('5 - context:', context);
          console.log('error with new data:', error);
          this.response.status(error.errorCode).send(error);
       }.bind(this));
