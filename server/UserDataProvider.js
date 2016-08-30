@@ -148,7 +148,10 @@ function PostUserData() {
       if (data.email) {
          promises.push(this.validateEmail(data.email));
       }
-      return Promise.all(promises);
+      var all = Promise.all(promises);
+      return new Promise(function(resolve, reject) {
+         all.then(resolve, reject);
+      });
    };
 
    this.validateUsername = function(username) {
