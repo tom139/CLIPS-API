@@ -116,7 +116,6 @@ GetUserData.prototype = new UserDataRequest;
 function PostUserData() {
 
    this.getNewData = function() {
-      console.log('getNewData()');
       const body = this.request.body;
       var data = {};
       var hasNewData = false;
@@ -130,17 +129,14 @@ function PostUserData() {
       }
       return new Promise(function(resolve, reject) {
          if (hasNewData) {
-            console.log('getNewData.resolve');
             resolve(data);
          } else {
-            console.log('getNewData.reject');
             reject(createResponseError('no data to change: use \'email\' and \'username\' to specify new values', 461, null, {requestBody: body}));
          }
       });
    };
 
    this.validateData = function(data) {
-      console.log('validateData()');
       var promises = [];
       if (data.username) {
          promises.push(this.validateUsername(data.username));
@@ -151,24 +147,18 @@ function PostUserData() {
       var all = Promise.all(promises);
       return new Promise(function(resolve, reject) {
          all.then(resolve, function(error) {
-            console.log('error validating');
             reject(error);
          });
       });
    };
 
    this.validateUsername = function(username) {
-      console.log('will validateUsername(' + username + ')');
       return new Promise(function(resolve, reject) {
          UsernameValidator(username).then(function(isAvailable) {
-            console.log('username is available:', isAvailable);
             if (isAvailable) {
                resolve();
             } else {
-               console.log('username will reject');
-               console.log('createResponseError:', createResponseError);
-               console.log('username:', username);
-               reject({debugMessage: 'Username is not available', userMessage: 'L\'username non è disponibile, scegline un altro!', errorCode: 460});
+               reject({debugMessage: 'Username is not available', userMessage: 'L\'username ' + username + ' non è disponibile, scegline un altro!', errorCode: 460});
             }
          }, function(error) {
             reject(createResponseError({debugMessage: 'Error checking for username availability', errorInfo: error, errorCode: 550}));
@@ -177,14 +167,11 @@ function PostUserData() {
    };
 
    this.validateEmail = function(email) {
-      console.log('will validateEmail(' + email + ')');
       return new Promise(function(resolve, reject) {
          EmailValidator.checkEmail(email).then(function(isValid) {
-            console.log('email is valid:', isValid);
             if (isValid) {
                resolve();
             } else {
-               console.log('email will reject');
                reject({debugMessage: 'Email is not valid', userMessage: 'L\'email non è disponibile, potrebbe esserci un errore di battitura o potrebbe già essere associata ad un account! (magari il tuo)', errorCode: 460});
             }
          }, function(error) {
@@ -218,26 +205,17 @@ function PostUserData() {
             data: data,
             this: this
          };
-         console.log('execute will validateData(data)\ndata:', data);
          this.validateData(data).then(function() {
-            console.log('1 - context:', context);
             context.this.saveData(context.data).then(function() {
-               console.log('2 - context:', context);
                context.this.response.status(200).send(data);
             }.bind(context), function(error) {
-               console.log('3 - context:', context);
                console.log('unable to save with error:', error);
                context.this.response.status(error.errorCode).send(error);
             }.bind(context));
          }.bind(context), function(error) {
-            console.log('oops');
-            console.log('4 - context:', context);
-            console.log('error after validation:', error);
             context.this.response.status(error.errorCode).send(error);
          }.bind(context));
       }.bind(this), function(error) {
-         console.log('5 - context:', context);
-         console.log('error with new data:', error);
          this.response.status(error.errorCode).send(error);
       }.bind(this));
    };
