@@ -167,11 +167,7 @@ function PostUserData() {
             } else {
                console.log('username will reject');
                console.log('createResponseError:', createResponseError);
-               reject({
-                  userMessage: 'username ' + username + ' is not valid',
-                  errorCode: 461,
-                  errorInfo: {requestBody: body}
-               });
+               reject();
             }
          }, function(error) {
             reject(createResponseError('error checking if username is valid', 550, null, error));
