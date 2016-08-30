@@ -171,7 +171,7 @@ function PostUserData() {
                reject({debugMessage: 'Username is not available', userMessage: 'L\'username non è disponibile, scegline un altro!', errorCode: 460});
             }
          }, function(error) {
-            reject(createResponseError('error checking if username is valid', 550, null, error));
+            reject(createResponseError({debugMessage: 'Error checking for username availability', errorInfo: error, errorCode: 550}));
          });
       });
    };
@@ -185,10 +185,10 @@ function PostUserData() {
                resolve();
             } else {
                console.log('email will reject');
-               reject(createResponseError('email ' + email + ' is not valid', 461, null, {requestBody: body}));
+               reject({debugMessage: 'Email is not valid', userMessage: 'L\'email non è disponibile, potrebbe esserci un errore di battitura o potrebbe già essere associata ad un account! (magari il tuo)', errorCode: 460});
             }
          }, function(error) {
-            reject(createResponseError('error checking if email is valid', 461, null, {requestBody: body}));
+            reject({debugMessage: 'Error checking for email availability', errorInfo: error, errorCode: 550});
          });
       });
    };
