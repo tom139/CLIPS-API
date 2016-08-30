@@ -80,34 +80,34 @@ function RegistrationRequestHandler() {
                            console.log('Error saving token: ', error);
                            context.response.status(505).send({
                               errorCode: 505,
-                              debugError: "unable to save new user's token"
+                              debugMessage: "unable to save new user's token"
                            });
                         }.bind(context));
                      }.bind(response), function(error) {
                         console.log('error saving user: ', error);
                         response.status(505).send({
                            errorCode: 505,
-                           debugError: "unable to save user"
+                           debugMessage: "unable to save user"
                         });
                      }.bind(response));
                   } else {
                      console.log('username (', username, ') is NOT valid');
                      response.status(461).send({
                         errorCode: 461,
-                        debugError: "username is NOT valid (maybe not unique). Choose another!"
+                        debugMessage: "username is NOT valid (maybe not unique). Choose another!"
                      });
                   }
                }.bind(response), function(error) {
                   console.log('error checking username: ', error);
                   response.status(505).send({
                      errorCode: 505,
-                     debugError: "errorCreating user " + error
+                     debugMessage: "errorCreating user " + error
                   });
                }.bind(response));
             } else {
                response.status(460).send({
                   errorCode: 461,
-                  debugError: 'email is not valid'
+                  debugMessage: 'email is not valid'
                });
             }
          }.bind(response));
@@ -132,7 +132,7 @@ function RegistrationRequestHandler() {
    //       console.error('error creating new user: ', error);
    //       response.status(505).send({
    //          errorCode: 505,
-   //          debugError: "errorCreating user " + error
+   //          debugMessage: "errorCreating user " + error
    //       });
    //    });
    // }
