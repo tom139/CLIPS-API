@@ -150,7 +150,10 @@ function PostUserData() {
       }
       var all = Promise.all(promises);
       return new Promise(function(resolve, reject) {
-         all.then(resolve, reject);
+         all.then(resolve, function(error) {
+            console.log('error validating');
+            reject(error);
+         });
       });
    };
 
