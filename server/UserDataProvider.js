@@ -168,7 +168,7 @@ function PostUserData() {
                console.log('username will reject');
                console.log('createResponseError:', createResponseError);
                console.log('username:', username);
-               reject('Username is not available');
+               reject({userMessage: 'Username is not available'});
             }
          }, function(error) {
             reject(createResponseError('error checking if username is valid', 550, null, error));
