@@ -171,13 +171,15 @@ function PostUserData() {
    this.validateEmail = function(email) {
       console.log('will validateEmail(' + email + ')');
       return new Promise(function(resolve, reject) {
+         var res = resolve;
+         var rej = reject;
          EmailValidator.checkEmail(email).then(function(isValid) {
             console.log('email is valid:', isValid);
             if (isValid) {
                resolve();
             } else {
                console.log('email will reject');
-               reject(createResponseError('email ' + email + ' is not valid', 461, null, {requestBody: body}));
+               rej(createResponseError('email ' + email + ' is not valid', 461, null, {requestBody: body}));
             }
          }, function(error) {
             reject(createResponseError('error checking if email is valid', 461, null, {requestBody: body}));
