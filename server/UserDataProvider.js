@@ -149,7 +149,7 @@ function PostUserData() {
          promises.push(this.validateEmail(data.email));
       }
       return Promise.all(promises);
-   }
+   };
 
    this.validateUsername = function(username) {
       console.log('will validateUsername(' + username + ')');
@@ -229,7 +229,7 @@ function PostUserData() {
       }.bind(this), function(error) {
          console.log('5 - context:', context);
          console.log('error with new data:', error);
-         // this.response.status(error.errorCode).send(error);
+         this.response.status(error.errorCode).send(error);
       }.bind(this));
    };
 };
