@@ -220,6 +220,7 @@ function PostUserData() {
                context.this.response.status(error.errorCode).send(error);
             }.bind(context));
          }.bind(context), function(error) {
+            console.log('oops');
             console.log('4 - context:', context);
             context.this.response.status(error.errorCode).send(error);
          }.bind(context));
