@@ -231,6 +231,7 @@ function PostUserData() {
          }.bind(context), function(error) {
             console.log('oops');
             console.log('4 - context:', context);
+            console.log('error =', error);
             context.this.response.status(error.errorCode).send(error);
          }.bind(context));
       }.bind(this), function(error) {
