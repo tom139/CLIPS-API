@@ -159,6 +159,7 @@ function PostUserData() {
             if (isAvailable) {
                resolve();
             } else {
+               console.log('username will reject');
                reject(createResponseError('username ' + username + ' is not valid', 461, null, {requestBody: body}));
             }
          }, function(error) {
@@ -175,6 +176,7 @@ function PostUserData() {
             if (isValid) {
                resolve();
             } else {
+               console.log('email will reject');
                reject(createResponseError('email ' + email + ' is not valid', 461, null, {requestBody: body}));
             }
          }, function(error) {
