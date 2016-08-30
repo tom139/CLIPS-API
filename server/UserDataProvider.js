@@ -229,7 +229,7 @@ function PostUserData() {
       }.bind(this), function(error) {
          console.log('5 - context:', context);
          console.log('error with new data:', error);
-         this.response.status(error.errorCode).send(error);
+         // this.response.status(error.errorCode).send(error);
       }.bind(this));
    };
 };
