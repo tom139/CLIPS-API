@@ -144,8 +144,13 @@ function PostUserData() {
       if (data.email) {
          promises.push(this.validateEmail(data.email));
       }
-      return Promise.all(promises);
-   }
+      var all = Promise.all(promises);
+      return new Promise(function(resolve, reject) {
+         all.then(resolve, function(error) {
+            reject(error);
+         });
+      });
+   };
 
    this.validateUsername = function(username) {
       return new Promise(function(resolve, reject) {
@@ -153,10 +158,10 @@ function PostUserData() {
             if (isAvailable) {
                resolve();
             } else {
-               reject(createResponseError('username ' + username + ' is not valid', 461, null, {requestBody: body}));
+               reject({debugMessage: 'Username is not available', userMessage: 'L\'username ' + username + ' non è disponibile, scegline un altro!', errorCode: 460});
             }
          }, function(error) {
-            reject(createResponseError('error checking if username is valid', 550, null, error));
+            reject(createResponseError({debugMessage: 'Error checking for username availability', errorInfo: error, errorCode: 550}));
          });
       });
    };
@@ -167,10 +172,10 @@ function PostUserData() {
             if (isValid) {
                resolve();
             } else {
-               reject(createResponseError('email ' + email + ' is not valid', 461, null, {requestBody: body}));
+               reject({debugMessage: 'Email is not valid', userMessage: 'L\'email non è disponibile, potrebbe esserci un errore di battitura o potrebbe già essere associata ad un account! (magari il tuo)', errorCode: 460});
             }
          }, function(error) {
-            reject(createResponseError('error checking if email is valid', 461, null, {requestBody: body}));
+            reject({debugMessage: 'Error checking for email availability', errorInfo: error, errorCode: 550});
          });
       });
    };
@@ -211,7 +216,6 @@ function PostUserData() {
             context.this.response.status(error.errorCode).send(error);
          }.bind(context));
       }.bind(this), function(error) {
-         console.log('error with new data:', error);
          this.response.status(error.errorCode).send(error);
       }.bind(this));
    };
