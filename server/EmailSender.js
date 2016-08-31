@@ -18,10 +18,8 @@ function sendMail(mail) {
    return new Promise(function(resolve, reject) {
       transporter.sendMail(mail, function(error, info) {
          if (error) {
-            console.log('email sender will reject');
             reject(error);
          } else {
-            console.log('email sender will resolve');
             resolve(info);
          }
       });
