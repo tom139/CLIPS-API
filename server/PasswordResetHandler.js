@@ -66,20 +66,22 @@ function PasswordResetProvider() {
          console.error('should send error', error);
          this.response.status(error.errorCode).send(error);
       }.bind(this))
-      .then(success, function(error) {
+      .then(function() {
+         this.response.status(200).send();
+      }, function(error) {
          console.error('should send error', error);
          this.response.status(error.errorCode).send(error);
       }.bind(this));
    };
 
-   this.sendError = function(error) {
-      console.error('should send error', error);
-      this.response.status(error.errorCode).send(error);
-   }
-
-   this.success = function() {
-      this.response.status(200).send();
-   }
+   // this.sendError = function(error) {
+   //    console.error('should send error', error);
+   //    this.response.status(error.errorCode).send(error);
+   // }
+   //
+   // this.success = function() {
+   //    this.response.status(200).send();
+   // }
 
    this.getEmail = function() {
       const data = this.request.body;
