@@ -26,10 +26,10 @@ function Error(code, debug, user, info) {
 function sendEmail(sendingData) {
    //TODO: implementare il metodo che invia l'email
    return new Promise(function(resolve, reject) {
-      console.log('should send email to:', sendingData.email);
-      console.log('with password: ', sendingData.password);
       emailSender(sendingData.password, sendingData.email)
-      .then(resolve, function(error) {
+      .then(function(info) {
+         resolve();
+      }.bind(resolve), function(error) {
          reject(Error(552, 'Sending function didn\'t work.', 'Purtruppo si è verificato un problema nell\'invio della nuova password alla tua casella e-mail, contattaci a beaconstrips.swe@gmail.com e risolveremo il problema!', error));
       }.bind(reject));
    });
