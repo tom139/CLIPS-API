@@ -11,6 +11,7 @@ const poshtml = '</b>.<br /><p>Puoi modificarla in qualsiasi momento dall\'App s
 function sendNewPassword(password, email) {
    const mail = {
       subject: subject,
+      to: email,
       text: pretext + password + postext,
       html: prehtml + password + poshtml
    };
