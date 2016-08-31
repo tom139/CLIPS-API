@@ -1,6 +1,7 @@
 'use strict';
 
 const db = require('./DBHandler.js');
+const sendEmail = require('./PasswordResetEmailSender.js');
 
 const possibleChars = 'abcdefghijklmnopqrstuvwxyz0123456789';
 const charsCount = possibleChars.length;
@@ -27,7 +28,10 @@ function sendEmail(sendingData) {
    return new Promise(function(resolve, reject) {
       console.log('should send email to:', sendingData.email);
       console.log('with password: ', sendingData.password);
-      reject(Error(552, 'Sending function doesn\'t work yet.', 'L\'opzione di invio della nuova password per email non è ancora disponibile, puoi usare la password: ' + sendingData.password, sendingData));
+      sendEmail(sendingData.password, sendingData.email)
+      .then(resolve, function(error) {
+         reject(Error(552, 'Sending function didn\'t work.', 'Purtruppo si è verificato un problema nell\'invio della nuova password alla tua casella e-mail, contattaci a beaconstrips.swe@gmail.com e risolveremo il problema!', error));
+      }.bind(reject));
    });
 }
 
