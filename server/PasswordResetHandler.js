@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('./DBHandler.js');
-const emailSender = require('./PasswordResetEmailSender.js');
+const emailSender = require('./utility/PasswordResetEmailSender.js');
 
 const possibleChars = 'abcdefghijklmnopqrstuvwxyz0123456789';
 const charsCount = possibleChars.length;

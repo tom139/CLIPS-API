@@ -1,7 +1,6 @@
 'use strict';
 
 const nodemailer = require('nodemailer');
-const config     = require('./config.js');
 
 // const transporter = nodemailer.createTransport('smtps://beaconstrips.swe%40gmail.com:beaconclips2016swe@smtp.gmail.com');
 const transporter = nodemailer.createTransport({
