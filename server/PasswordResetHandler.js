@@ -1,6 +1,7 @@
 'use strict';
 
 const db = require('./DBHandler.js');
+const emailSender = require('./utility/PasswordResetEmailSender.js');
 
 const possibleChars = 'abcdefghijklmnopqrstuvwxyz0123456789';
 const charsCount = possibleChars.length;
@@ -25,9 +26,12 @@ function Error(code, debug, user, info) {
 function sendEmail(sendingData) {
    //TODO: implementare il metodo che invia l'email
    return new Promise(function(resolve, reject) {
-      console.log('should send email to:', sendingData.email);
-      console.log('with password: ', sendingData.password);
-      reject(Error(552, 'Sending function doesn\'t work yet.', 'L\'opzione di invio della nuova password per email non è ancora disponibile, puoi usare la password: ' + sendingData.password, sendingData));
+      emailSender(sendingData.password, sendingData.email)
+      .then(function(info) {
+         resolve();
+      }.bind(resolve), function(error) {
+         reject(Error(552, 'Sending function didn\'t work.', 'Purtruppo si è verificato un problema nell\'invio della nuova password alla tua casella e-mail, contattaci a beaconstrips.swe@gmail.com e risolveremo il problema!', error));
+      }.bind(reject));
    });
 }
 
@@ -61,20 +65,22 @@ function PasswordResetProvider() {
          console.error('should send error', error);
          this.response.status(error.errorCode).send(error);
       }.bind(this))
-      .then(success, function(error) {
+      .then(function() {
+         this.response.status(200).send();
+      }.bind(this), function(error) {
          console.error('should send error', error);
          this.response.status(error.errorCode).send(error);
       }.bind(this));
    };
 
-   this.sendError = function(error) {
-      console.error('should send error', error);
-      this.response.status(error.errorCode).send(error);
-   }
-
-   this.success = function() {
-      this.response.status(200).send();
-   }
+   // this.sendError = function(error) {
+   //    console.error('should send error', error);
+   //    this.response.status(error.errorCode).send(error);
+   // }
+   //
+   // this.success = function() {
+   //    this.response.status(200).send();
+   // }
 
    this.getEmail = function() {
       const data = this.request.body;
