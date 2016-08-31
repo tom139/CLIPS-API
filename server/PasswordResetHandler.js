@@ -67,6 +67,7 @@ function PasswordResetProvider() {
          this.response.status(error.errorCode).send(error);
       }.bind(this))
       .then(function() {
+         console.log('everything was fine!');
          this.response.status(200).send();
       }, function(error) {
          console.error('should send error', error);
