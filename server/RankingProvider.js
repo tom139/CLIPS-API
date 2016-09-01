@@ -6,6 +6,7 @@ function getRanking(pathID) {
    return new Promise(function(resolve, reject) {
       const rawQuery = 'SELECT `T`.*, `User`.`username` FROM (SELECT * FROM `PathResult` WHERE `pathID` = ' + pathID + ' ORDER BY `totalScore` DESC) AS T INNER JOIN `User` ON `T`.`userID` = `User`.`id` GROUP BY `userID`'
       db().raw(rawQuery).then(resolve, function(error) {
+         console.log('will reject with error:', error);
          reject({
             errorCode: 550,
             debugMessage: 'Error querying for results for path with id ' + pathID,
