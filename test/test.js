@@ -104,10 +104,4 @@ describe('# Buildings', function() {
    });
 });
 
-var userData = {};
-
-describe('# Registration', function() {
-   it('create new user', function() {
-      
-   })
-});
+require('./testUserFlow');
