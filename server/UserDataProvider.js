@@ -4,6 +4,7 @@ const db = require('./DBHandler.js');
 const URLRequestHandler = require('./URLRequestHandler.js');
 const UsernameValidator = require('./utility/UsernameChecker.js');
 const EmailValidator = require('./utility/EmailChecker.js');
+const PasswordValidator = require('./utility/PasswordChecker.js');
 
 function createResponseError(error, code, user, debugInfo) {
    return {
@@ -133,6 +134,16 @@ const oldPasswordIsCorrect = function(token, oldPassword) {
    });
 };
 
+const newPasswordValidator = function(newPassword) {
+   return new Promise(function(resolve, reject) {
+      if (PasswordValidator.isValid(newPassword)) {
+         resolve();
+      } else {
+         reject(createResponseError('new password is NOT valid', 461, PasswordValidator.instructions, {newPassword : newPassword}));
+      }
+   });
+}
+
 function PostUserData() {
 
    this.getNewData = function() {
@@ -176,6 +187,7 @@ function PostUserData() {
       }
       if (data.oldPassword && data.newPassword) {
          promises.push(oldPasswordIsCorrect(data.token, data.oldPassword));
+         promises.push(newPasswordValidator(data.newPassword));
       }
       var all = Promise.all(promises);
       return new Promise(function(resolve, reject) {
@@ -228,6 +240,11 @@ function PostUserData() {
             console.error(error);
          })
          .then(function(id) {
+            var updatingData = data;
+            updatingData.password = data.newPassword;
+            delete updatingData.newPassword;
+            delete updatingData.oldPassword;
+            delete updatingData.token;
             db()('User').where({id:id}).update(data).then(resolve, function(error) {
                reject(createResponseError('knex error updating user data', 551, null, {newData: data, knexError: error}));
             });
