@@ -32,7 +32,8 @@ function sendSuccess(response, data) {
 
 function RankingProvider() {
    this.execute = function() {
-      getRanking()
+      const pathID = this.request.params.pathID;
+      getRanking(pathID)
       .then(this.sendSuccess, this.sendError);
    };
 
