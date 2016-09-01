@@ -115,10 +115,20 @@ GetUserData.prototype = new UserDataRequest;
 
 const oldPasswordIsCorrect = function(token, oldPassword) {
    return new Promise(function(resolve, reject) {
-      db().from('AuthToken').innerJoin('User', 'User.id', 'AuthToken.userID')
+      db().from('AuthToken').innerJoin('User', 'User.id', 'AuthToken.userID').where({token : token})
       .then(function(users) {
-         console.log('knex join users:', users);
-         resolve();
+         if (users.length == 1) {
+            const user = users[0];
+            if (oldPassword == user.password) {
+               resolve();
+            } else {
+               reject(createResponseError('oldPassword not matching with stored password', 461, 'La vecchia password non corrisponde', {sentPassword: oldPassword, realPassword: user.password}));
+            }
+         } else if (users.length == 0) {
+            reject(createResponseError('token is not matching any user', 461, null, {token : token}));
+         } else {
+            reject(createResponseError('server error: multiple users with same token (' + token + ')', 550, null, {token: token, users: users}));
+         }
       });
    });
 };
