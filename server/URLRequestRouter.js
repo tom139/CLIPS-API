@@ -14,6 +14,7 @@ const Validator = require('./RegistrationFieldsValidator.js');
 const Path = require('./PathProvider.js');
 const UserData = require('./UserDataProvider.js');
 const PasswordReset = require('./PasswordResetHandler.js');
+const RankingProvider = require('./RankingProvider.js');
 
 // indica di fare il parse del body di tutte le richieste
 // in entrata come JSON object
@@ -91,6 +92,11 @@ app.post('/passwordReset', function(req, res) {
    console.log('handle reset password request');
    prepareAndExecute(PasswordReset, req, res);
 });
+
+app.get('/leaderboard/:pathID', function(req, res) {
+   console.log('handle leaderboard for path with id: ', req.params.pathID);
+   prepareAndExecute(RankingProvider, req, res);
+})
 
 module.exports.start = function() {
   app.listen(1234);
