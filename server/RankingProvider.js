@@ -36,7 +36,7 @@ function RankingProvider() {
       const pathID = this.request.params.pathID;
       getRanking(pathID)
       .then(this.sendSuccess, this.sendError);
-   };
+   }.bind(this);
 
    this.sendError = function(error) {
       console.log('should send error from response', this.response);
