@@ -40,6 +40,7 @@ function UserDataRequest() {
 
    this.getToken = function() {
       return new Promise(function(resolve, reject) {
+         console.log('this = ', this);
          var token = this.token();
          if (token) {
             resolve(token);
