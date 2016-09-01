@@ -31,12 +31,22 @@ function sendSuccess(response, data) {
    response.status(200).send(data);
 }
 
+function reject(error) {
+   console.log('rejected');
+   sendError(this.respose, error);
+}
+
+function resolve(data) {
+   console.log('resolved');
+   sendSuccess(this.response, data);
+}
+
 function RankingProvider() {
    this.execute = function() {
       const pathID = this.request.params.pathID;
       getRanking(pathID)
-      .then(this.sendSuccess, this.sendError);
-   }.bind(this);
+      .then(resolve.bind(this), reject.bind(this));
+   };
 
    this.sendError = function(error) {
       console.log('should send error from response', this.response);
