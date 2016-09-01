@@ -40,7 +40,6 @@ function UserDataRequest() {
 
    this.getToken = function() {
       return new Promise(function(resolve, reject) {
-         console.log('this = ', this);
          var token = this.token();
          if (token) {
             resolve(token);
@@ -128,7 +127,10 @@ function PostUserData() {
 
    this.getNewData = function() {
       const body = this.request.body;
+      const token = this.token();
+
       var data = {};
+      data.token = token;
       var hasNewData = false;
       if (body.hasOwnProperty('email')) {
          data.email = body.email;
@@ -143,20 +145,11 @@ function PostUserData() {
          data.newPassword = body.newPassword;
          hasNewData = true;
       }
-      var getToken = this.getToken;
       return new Promise(function(resolve, reject) {
-         if (hasNewData) {
-            console.log('will ask token');
-            getToken()
-            .then(function(token) {
-               console.log('got token');
-               console.log('data before adding token:', data);
-               data.token = token;
-               console.log('data after adding token:', data);
-               resolve(data);
-            }.bind(data), function(error) {
-               console.log('got error:', error);
-            })
+         if (!data.token) {
+            reject(createResponseError('no token', 461, null, null));
+         } else if (hasNewData) {
+            resolve(data);
          } else {
             reject(createResponseError('no data to change: use \'email\' and \'username\' to specify new values', 461, null, {requestBody: body}));
          }
