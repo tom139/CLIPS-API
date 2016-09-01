@@ -5,9 +5,10 @@ const expect = require('chai').expect;
 const assert = require('chai').assert;
 const validator = require('email-validator');
 const index = require('./../index.js');
+const config = require('./test_config.js');
 
-const host = '52.58.6.246';
-const port = 1234;
+const host = config.host;
+const port = config.port;
 
 const appinfo = {
    uri: 'http://' + host + ':' + port + '/appinfo',
@@ -101,4 +102,12 @@ describe('# Buildings', function() {
          }
       });
    });
+});
+
+var userData = {};
+
+describe('# Registration', function() {
+   it('create new user', function() {
+      
+   })
 });
