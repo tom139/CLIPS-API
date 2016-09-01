@@ -144,6 +144,7 @@ function PostUserData() {
       }
       return new Promise(function(resolve, reject) {
          if (hasNewData) {
+            console.log('will ask token');
             this.getToken()
             .then(function(token) {
                console.log('data before adding token:', data);
