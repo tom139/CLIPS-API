@@ -4,6 +4,7 @@ const db = require('./DBHandler.js');
 const URLRequestHandler = require('./URLRequestHandler.js');
 const UsernameValidator = require('./utility/UsernameChecker.js');
 const EmailValidator = require('./utility/EmailChecker.js');
+const PasswordValidator = require('./utility/PasswordChecker.js');
 
 function createResponseError(error, code, user, debugInfo) {
    return {
@@ -113,11 +114,44 @@ function GetUserData() {
 
 GetUserData.prototype = new UserDataRequest;
 
+const oldPasswordIsCorrect = function(token, oldPassword) {
+   return new Promise(function(resolve, reject) {
+      db().from('AuthToken').innerJoin('User', 'User.id', 'AuthToken.userID').where({token : token})
+      .then(function(users) {
+         if (users.length == 1) {
+            const user = users[0];
+            if (oldPassword == user.password) {
+               resolve();
+            } else {
+               reject(createResponseError('oldPassword not matching with stored password', 461, 'La vecchia password non corrisponde', {sentPassword: oldPassword, realPassword: user.password}));
+            }
+         } else if (users.length == 0) {
+            reject(createResponseError('token is not matching any user', 461, null, {token : token}));
+         } else {
+            reject(createResponseError('server error: multiple users with same token (' + token + ')', 550, null, {token: token, users: users}));
+         }
+      });
+   });
+};
+
+const newPasswordValidator = function(newPassword) {
+   return new Promise(function(resolve, reject) {
+      if (PasswordValidator.isValid(newPassword)) {
+         resolve();
+      } else {
+         reject(createResponseError('new password is NOT valid', 461, PasswordValidator.instructions, {newPassword : newPassword}));
+      }
+   });
+}
+
 function PostUserData() {
 
    this.getNewData = function() {
       const body = this.request.body;
+      const token = this.token();
+
       var data = {};
+      data.token = token;
       var hasNewData = false;
       if (body.hasOwnProperty('email')) {
          data.email = body.email;
@@ -127,8 +161,15 @@ function PostUserData() {
          data.username = body.username;
          hasNewData = true;
       }
+      if (body.hasOwnProperty('oldPassword') && body.hasOwnProperty('newPassword')) {
+         data.oldPassword = body.oldPassword;
+         data.newPassword = body.newPassword;
+         hasNewData = true;
+      }
       return new Promise(function(resolve, reject) {
-         if (hasNewData) {
+         if (!data.token) {
+            reject(createResponseError('no token', 461, null, null));
+         } else if (hasNewData) {
             resolve(data);
          } else {
             reject(createResponseError('no data to change: use \'email\' and \'username\' to specify new values', 461, null, {requestBody: body}));
@@ -143,6 +184,10 @@ function PostUserData() {
       }
       if (data.email) {
          promises.push(this.validateEmail(data.email));
+      }
+      if (data.oldPassword && data.newPassword) {
+         promises.push(oldPasswordIsCorrect(data.token, data.oldPassword));
+         promises.push(newPasswordValidator(data.newPassword));
       }
       var all = Promise.all(promises);
       return new Promise(function(resolve, reject) {
@@ -180,6 +225,12 @@ function PostUserData() {
       });
    };
 
+   this.validatePassword = function(oldPassword, newPassword) {
+      return new Promise(function(resolve, reject) {
+
+      });
+   }
+
    this.saveData = function(data) {
       return new Promise(function(resolve, reject) {
          this.getToken()
@@ -189,6 +240,11 @@ function PostUserData() {
             console.error(error);
          })
          .then(function(id) {
+            var updatingData = data;
+            updatingData.password = data.newPassword;
+            delete updatingData.newPassword;
+            delete updatingData.oldPassword;
+            delete updatingData.token;
             db()('User').where({id:id}).update(data).then(resolve, function(error) {
                reject(createResponseError('knex error updating user data', 551, null, {newData: data, knexError: error}));
             });
