@@ -113,6 +113,16 @@ function GetUserData() {
 
 GetUserData.prototype = new UserDataRequest;
 
+const oldPasswordIsCorrect = function(token, oldPassword) {
+   return new Promise(function(resolve, reject) {
+      db().from('AuthToken').innerJoin('User', 'User.id', 'AuthToken.userID')
+      .then(function(users) {
+         console.log('knex join users:', users);
+         resolve();
+      });
+   });
+};
+
 function PostUserData() {
 
    this.getNewData = function() {
@@ -127,9 +137,20 @@ function PostUserData() {
          data.username = body.username;
          hasNewData = true;
       }
+      if (body.hasOwnProperty('oldPassword') && body.hasOwnProperty('newPassword')) {
+         data.oldPassword = body.oldPassword;
+         data.newPassword = body.newPassword;
+         hasNewData = true;
+      }
       return new Promise(function(resolve, reject) {
          if (hasNewData) {
-            resolve(data);
+            this.getToken()
+            .then(function(token) {
+               console.log('data before adding token:', data);
+               data.token = token;
+               console.log('data after adding token:', data);
+               resolve(data);
+            }.bind(data), reject)
          } else {
             reject(createResponseError('no data to change: use \'email\' and \'username\' to specify new values', 461, null, {requestBody: body}));
          }
@@ -143,6 +164,9 @@ function PostUserData() {
       }
       if (data.email) {
          promises.push(this.validateEmail(data.email));
+      }
+      if (data.oldPassword && data.newPassword) {
+         promises.push(oldPasswordIsCorrect(data.token, data.oldPassword));
       }
       var all = Promise.all(promises);
       return new Promise(function(resolve, reject) {
@@ -179,6 +203,12 @@ function PostUserData() {
          });
       });
    };
+
+   this.validatePassword = function(oldPassword, newPassword) {
+      return new Promise(function(resolve, reject) {
+
+      });
+   }
 
    this.saveData = function(data) {
       return new Promise(function(resolve, reject) {
