@@ -142,10 +142,11 @@ function PostUserData() {
          data.newPassword = body.newPassword;
          hasNewData = true;
       }
+      var getToken = this.getToken;
       return new Promise(function(resolve, reject) {
          if (hasNewData) {
             console.log('will ask token');
-            this.getToken()
+            getToken()
             .then(function(token) {
                console.log('got token');
                console.log('data before adding token:', data);
