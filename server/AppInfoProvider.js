@@ -8,7 +8,7 @@ function AppInfoHandler(req, res) {
       // rispondo con lo stato 200 e le info sull'app
       this.response.status(200).send({
          description  : 'Descrizione dell\'applicazione',
-         websiteURL   : '52.58.6.246',
+         websiteURL   : 'beaconstrips.tk',
          supportemail : 'beaconstrips.swe@gmail.com',
          discoveryUUID: 'asdfhjlk-hjkl-fdas-jklh-fdas-fjdkalhd'
       });
