@@ -5,7 +5,9 @@ const db = require('./DBHandler.js');
 function getRanking(pathID) {
    return new Promise(function(resolve, reject) {
       const rawQuery = 'SELECT `T`.*, `User`.`username` FROM (SELECT * FROM `PathResult` WHERE `pathID` = ' + pathID + ' ORDER BY `totalScore` DESC) AS T INNER JOIN `User` ON `T`.`userID` = `User`.`id` GROUP BY `userID`'
-      db().raw(rawQuery).then(resolve, function(error) {
+      db().raw(rawQuery).then(function(results) {
+         resolve(results[0]);
+      }, function(error) {
          console.log('will reject with error:', error);
          reject({
             errorCode: 550,
