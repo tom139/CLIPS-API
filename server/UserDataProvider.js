@@ -147,11 +147,14 @@ function PostUserData() {
             console.log('will ask token');
             this.getToken()
             .then(function(token) {
+               console.log('got token');
                console.log('data before adding token:', data);
                data.token = token;
                console.log('data after adding token:', data);
                resolve(data);
-            }.bind(data), reject)
+            }.bind(data), function(error) {
+               console.log('got error:', error);
+            })
          } else {
             reject(createResponseError('no data to change: use \'email\' and \'username\' to specify new values', 461, null, {requestBody: body}));
          }
