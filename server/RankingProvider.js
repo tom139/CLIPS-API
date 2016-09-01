@@ -37,12 +37,12 @@ function RankingProvider() {
       .then(this.sendSuccess, this.sendError);
    };
 
-   this.sendError(error) {
+   this.sendError = function(error) {
       console.log('should send error from response', this.response);
       sendError(this.response, error);
    };
 
-   this.sendSuccess(data) {
+   this.sendSuccess = function(data) {
       console.log('should send success from response', this.response);
       sendSuccess(this.response, data);
    };
