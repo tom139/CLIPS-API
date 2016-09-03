@@ -6,9 +6,9 @@ const defaultConnection = config.db.connection;
 const fs = require('fs-promise');
 
 const connection = {
-   host: defaultConnection.host,
-   pass: defaultConnection.pass,
-   user: defaultConnection.user,
+   host: '127.0.0.1',
+   pass: 'root',
+   user: '',
    charset: 'utf8'
 };
 
