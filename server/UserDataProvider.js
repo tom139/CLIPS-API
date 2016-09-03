@@ -153,15 +153,15 @@ function PostUserData() {
       var data = {};
       data.token = token;
       var hasNewData = false;
-      if (body.hasOwnProperty('email')) {
+      if (body.email) {
          data.email = body.email;
          hasNewData = true;
       }
-      if (body.hasOwnProperty('username')) {
+      if (body.username)) {
          data.username = body.username;
          hasNewData = true;
       }
-      if (body.hasOwnProperty('oldPassword') && body.hasOwnProperty('newPassword')) {
+      if (body.oldPassword) && body.newPassword)) {
          data.oldPassword = body.oldPassword;
          data.newPassword = body.newPassword;
          hasNewData = true;
