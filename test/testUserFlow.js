@@ -185,15 +185,15 @@ describe('# User Data Flow', function() {
    });
 
    describe('login', function() {
-      describe('failing attempts', function() {
-         const makeRequestWithBody = function(body) {
-            return {
-               uri: 'http://' + config.host + ':' + config.port + '/login',
-               method: 'GET',
-               json: body,
-               headers: {}
-            };
+      const makeRequestWithBody = function(body) {
+         return {
+            uri: 'http://' + config.host + ':' + config.port + '/login',
+            method: 'POST',
+            json: body,
+            headers: {}
          };
+      };
+      describe('failing attempts', function() {
          const noPassword = makeRequestWithBody({
             email: userData.email
          });
@@ -208,6 +208,19 @@ describe('# User Data Flow', function() {
                .catch(help.shouldFail);
             });
          }
+      });
+      describe('working attempt', function() {
+         const login = makeRequestWithBody({
+            email: userData.email,
+            password: userData.password
+         });
+         it('should login', function() {
+            return request(login)
+            .then(function(body) {
+               userData.token = body.token
+               assert.typeOf(body.token, 'string');
+            });
+         });
       });
    });
 
