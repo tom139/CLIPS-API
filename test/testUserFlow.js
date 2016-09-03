@@ -4,6 +4,7 @@ const request = require('request-promise');
 const expect = require('chai').expect;
 const assert = require('chai').assert;
 const config = require('./test_config.js');
+const help   = require('./helperFunctions.js');
 
 function clone(object) {
    return JSON.parse(JSON.stringify(object));
@@ -180,6 +181,33 @@ describe('# User Data Flow', function() {
                assert.typeOf(userData.username, 'string');
             });
          });
+      });
+   });
+
+   describe('login', function() {
+      describe('failing attempts', function() {
+         const makeRequestWithBody = function(body) {
+            return {
+               uri: 'http://' + config.host + ':' + config.port + '/login',
+               method: 'GET',
+               json: body,
+               headers: {}
+            };
+         };
+         const noPassword = makeRequestWithBody({
+            email: userData.email
+         });
+         const noEmail = makeRequestWithBody({
+            password: userData.password
+         });
+         const failings = [noPassword, noEmail];
+         for (var fail of failings) {
+            it('should fail', function() {
+               return request(fail)
+               .then(help.fail)
+               .catch(help.shouldFail);
+            });
+         }
       });
    });
 
