@@ -157,11 +157,11 @@ function PostUserData() {
          data.email = body.email;
          hasNewData = true;
       }
-      if (body.username)) {
+      if (body.username) {
          data.username = body.username;
          hasNewData = true;
       }
-      if (body.oldPassword) && body.newPassword)) {
+      if (body.oldPassword && body.newPassword) {
          data.oldPassword = body.oldPassword;
          data.newPassword = body.newPassword;
          hasNewData = true;
