@@ -6,6 +6,10 @@ node_js:
 install:
   - npm install
 
+before_script:
+  - mysql -u root < ./builder/CLIPS_structure.sql
+  - mysql -u root < ./builder/CLIPS_data.sql
+
 script:
   - npm test
 
