@@ -7,8 +7,8 @@ install:
   - npm install
 
 before_script:
-  - mysql -u root -p "" < ./builder/CLIPS_structure.sql
-  - mysql -u root -p "" < ./builder/CLIPS_data.sql
+  - mysql -u root < ./builder/CLIPS_structure.sql
+  - mysql -u root < ./builder/CLIPS_data.sql
 
 script:
   - npm test
