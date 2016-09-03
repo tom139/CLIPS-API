@@ -7,6 +7,7 @@ install:
   - npm install
 
 script:
+  - node builder/DBCreator.js
   - npm test
 
 notifications:
