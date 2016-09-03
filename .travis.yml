@@ -6,8 +6,11 @@ node_js:
 install:
   - npm install
 
+before_script:
+  - mysql -u root -p "" < ./builder/CLIPS_structure.sql
+  - mysql -u root -p "" < ./builder/CLIPS_data.sql
+
 script:
-  - node builder/DBCreator.js
   - npm test
 
 notifications:
