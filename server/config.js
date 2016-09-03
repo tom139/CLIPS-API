@@ -6,10 +6,10 @@ module.exports.db = {
     connection: {
         'host': 'localhost',
         'user': 'root',
-        'password': 'pass',
+        'password': '',
         'database': 'CLIPS'
     }
 };
 
-module.exports.proofPath = "/Users/tom/Developer/CLIPS-API/proofs/";
-module.exports.algorithmPath = "/Users/tom/Developer/CLIPS-API/algorithms/";
+module.exports.proofPath = "./proofs/";
+module.exports.algorithmPath = "./algorithms/";
