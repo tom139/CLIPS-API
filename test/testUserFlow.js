@@ -193,27 +193,28 @@ describe('# User Data Flow', function() {
             headers: {}
          };
       };
-      describe('failing attempts', function() {
-         const noPassword = makeRequestWithBody({
-            email: userData.email
-         });
-         const noEmail = makeRequestWithBody({
-            password: userData.password
-         });
-         const failings = [noPassword, noEmail];
-         for (var fail of failings) {
-            it('should fail', function() {
-               return request(fail)
-               .then(help.fail)
-               .catch(help.shouldFail);
-            });
-         }
-      });
-      describe('working attempt', function() {
-         const login = makeRequestWithBody({
+      var login = {};
+      beforeEach(function() {
+         login = makeRequestWithBody({
             email: userData.email,
             password: userData.password
          });
+      });
+      describe('failing attempts', function() {
+         it('should fail', function() {
+            delete login.json.email;
+            return request(login)
+            .then(help.fail)
+            .catch(help.shouldFail);
+         });
+         it('should fail', function() {
+            delete login.json.password;
+            return request(login)
+            .then(help.fail)
+            .catch(help.shouldFail);
+         });
+      });
+      describe('working attempt', function() {
          it('should login', function() {
             return request(login)
             .then(function(body) {
