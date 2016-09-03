@@ -7,8 +7,8 @@ const fs = require('fs-promise');
 
 const connection = {
    host: '127.0.0.1',
-   pass: 'root',
-   user: '',
+   pass: '',
+   user: 'root',
    charset: 'utf8'
 };
 
