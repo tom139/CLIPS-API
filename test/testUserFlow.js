@@ -242,4 +242,32 @@ describe('# User Data Flow', function() {
          });
       });
    });
+
+   describe('logout', function() {
+      it('execute logout', function() {
+         const logout = {
+            uri   :help.baseURI + '/logout',
+            method: 'GET',
+            json: true,
+            headers: {
+               'Authorization': userData.token,
+            }
+         };
+         return request(logout);
+      });
+      it('did really logout', function() {
+         const tryLogin = {
+            uri: help.baseURI + '/login',
+            method: 'GET',
+            json: true,
+            resolveWithFullResponse: true,
+            headers: {
+               'Authorization': userData.token,
+            }
+         }
+         return request(tryLogin)
+         .then(help.fail)
+         .catch(help.clientError);
+      });
+   });
 });
