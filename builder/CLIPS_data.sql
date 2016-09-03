@@ -100,19 +100,6 @@ INSERT INTO `Path` (`id`, `title`, `description`, `target`, `estimatedDuration`,
 (3, 'Giro del giardino', 'gita in giardino', 'solo gnomi e fate', '3 ere', 'CIAO', 'complimenti', 1, 2);
 
 --
--- Dump dei dati per la tabella `PathResult`
---
-
-INSERT INTO `PathResult` (`id`, `pathID`, `userID`, `totalScore`, `startDate`, `endDate`) VALUES
-(1, 1, 1, 200, '2016-07-27 09:29:31', '2016-07-27 11:00:00'),
-(2, 1, 1, 34, '2016-08-19 10:53:24', '2016-08-19 13:22:15'),
-(3, 1, 1, 34, '2016-08-19 10:53:24', '2016-08-19 13:22:15'),
-(4, 1, 1, 34, '2016-08-19 10:53:24', '2016-08-19 13:22:15'),
-(5, 1, 1, 29, '2016-08-19 10:53:24', '2016-08-19 13:22:15'),
-(6, 1, 7, 34, '2016-08-19 10:53:24', '2016-08-19 13:22:15'),
-(14, 1, 7, 34, '2016-08-19 10:53:24', '2016-08-19 13:22:15');
-
---
 -- Dump dei dati per la tabella `Proof`
 --
 
@@ -267,6 +254,19 @@ INSERT INTO `User` (`id`, `email`, `username`, `password`, `modificationDate`, `
 (118, 'test_8028@test.com', 'test_8028', 'test-passw0rd', '2016-09-03 15:39:17', '0000-00-00 00:00:00'),
 (119, 'test_d1dc@test.com', 'test_d1dc', 'test-passw0rd', '2016-09-03 15:44:21', '0000-00-00 00:00:00'),
 (120, 'test_1811@test.com', 'test_1811', 'test-passw0rd', '2016-09-03 15:47:15', '0000-00-00 00:00:00');
+
+--
+-- Dump dei dati per la tabella `PathResult`
+--
+
+INSERT INTO `PathResult` (`id`, `pathID`, `userID`, `totalScore`, `startDate`, `endDate`) VALUES
+(1, 1, 1, 200, '2016-07-27 09:29:31', '2016-07-27 11:00:00'),
+(2, 1, 1, 34, '2016-08-19 10:53:24', '2016-08-19 13:22:15'),
+(3, 1, 1, 34, '2016-08-19 10:53:24', '2016-08-19 13:22:15'),
+(4, 1, 1, 34, '2016-08-19 10:53:24', '2016-08-19 13:22:15'),
+(5, 1, 1, 29, '2016-08-19 10:53:24', '2016-08-19 13:22:15'),
+(6, 1, 7, 34, '2016-08-19 10:53:24', '2016-08-19 13:22:15'),
+(14, 1, 7, 34, '2016-08-19 10:53:24', '2016-08-19 13:22:15');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
