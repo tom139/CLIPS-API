@@ -10,6 +10,9 @@ const config = require('./test_config.js');
 const host = config.host;
 const port = config.port;
 
+require('./testAppInfo.js');
+
+/*
 const appinfo = {
    uri: 'http://' + host + ':' + port + '/appinfo',
    json: true
@@ -50,6 +53,8 @@ describe('# AppInfo', function() {
       });
    });
 });
+
+*/
 
 const buildings = {
    uri: 'http://' + host + ':' + port + '/buildings',
