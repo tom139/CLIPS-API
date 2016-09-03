@@ -1,5 +1,8 @@
 'use strict';
 
+// run server
+require('../server/URLRequestRouter.js');
+
 // test app info
 require('./testAppInfo.js');
 
