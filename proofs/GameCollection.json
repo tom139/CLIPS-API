@@ -50,6 +50,7 @@
               },
               {
                  "helpText": "Se va là…",
+                 "image": "media/luca.jpg",
                  "question": "Luca è un bravo programmatore",
                  "correctAnswer": false
               }
