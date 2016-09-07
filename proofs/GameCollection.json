@@ -13,6 +13,7 @@
             "questions" : [
               {
                  "helpText": "Non mi pare fosse bianco!",
+                 "image": "media/luca.jpg",
                  "question": "Di che colore era il cavallo bianco di Napoleone",
                  "answers" : ["Bianco", "Rosa", "Blu", "Rosso"],
                  "correctIndex" : 0
@@ -27,7 +28,7 @@
                  "helpText": "Mi pare fosse Amici di Maria, no?",
                  "question": "Qual è il programma preferito di Matteo Franco",
                  "answers" : ["StarUML", "Android Studio", "Paint", "MS World"],
-                 "correntIndex" : 2
+                 "correctIndex" : 2
               }
             ]
           }
