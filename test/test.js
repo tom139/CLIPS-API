@@ -1,5 +1,5 @@
 /**
- * @file ./test.js
+ * @file ./test/test.js
  * @date Tue, 2 Aug 2016 19:14:14 +0200
  * @version 1.0
  * @author Tommaso Panozzo

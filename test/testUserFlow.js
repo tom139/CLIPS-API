@@ -1,5 +1,5 @@
 /**
- * @file ./testUserFlow.js
+ * @file ./test/testUserFlow.js
  * @date Sat, 3 Sep 2016 10:44:03 +0200
  * @version 1.0
  * @author Tommaso Panozzo

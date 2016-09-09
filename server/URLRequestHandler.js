@@ -1,5 +1,5 @@
 /**
- * @file ./URLRequestHandler.js
+ * @file ./server/URLRequestHandler.js
  * @date Wed, 3 Aug 2016 08:58:10 +0200
  * @version 1.0
  * @author Tommaso Panozzo

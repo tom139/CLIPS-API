@@ -1,5 +1,5 @@
 /**
- * @file ./testBuildings.js
+ * @file ./test/testBuildings.js
  * @date Sat, 3 Sep 2016 13:43:17 +0200
  * @version 1.0
  * @author Tommaso Panozzo

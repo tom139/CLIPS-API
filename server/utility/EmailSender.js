@@ -1,5 +1,5 @@
 /**
- * @file ./utility/EmailSender.js
+ * @file ./server/utility/EmailSender.js
  * @date Wed, 31 Aug 2016 09:30:17 +0200
  * @version 1.0
  * @author Tommaso Panozzo

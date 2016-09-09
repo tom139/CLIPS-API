@@ -1,3 +1,12 @@
+##
+# @file .travis.yml
+# @date Tue, 2 Aug 2016 19:14:14 +0200
+# @version 1.0
+# @author Tommaso Panozzo
+#
+# File di configurazione per la Continuous Integration con Travis-CI
+#
+
 language: node_js
 
 node_js:

@@ -1,5 +1,5 @@
 /**
- * @file ./UserDataProvider.js
+ * @file ./server/UserDataProvider.js
  * @date Mon, 22 Aug 2016 09:09:49 +0200
  * @version 1.0
  * @author Tommaso Panozzo

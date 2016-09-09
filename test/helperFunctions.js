@@ -1,5 +1,5 @@
 /**
- * @file ./helperFunctions.js
+ * @file ./test/helperFunctions.js
  * @date Sat, 3 Sep 2016 12:54:00 +0200
  * @version 1.0
  * @author Tommaso Panozzo

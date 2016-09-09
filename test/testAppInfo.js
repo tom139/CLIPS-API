@@ -1,5 +1,5 @@
 /**
- * @file ./testAppInfo.js
+ * @file ./test/testAppInfo.js
  * @date Sat, 3 Sep 2016 13:16:06 +0200
  * @version 1.0
  * @author Tommaso Panozzo

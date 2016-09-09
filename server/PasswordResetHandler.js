@@ -1,5 +1,5 @@
 /**
- * @file ./PasswordResetHandler.js
+ * @file ./server/PasswordResetHandler.js
  * @date Sat, 27 Aug 2016 18:21:03 +0200
  * @version 1.0
  * @author Tommaso Panozzo

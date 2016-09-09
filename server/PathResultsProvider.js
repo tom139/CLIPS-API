@@ -1,5 +1,5 @@
 /**
- * @file ./PathResultsProvider.js
+ * @file ./server/PathResultsProvider.js
  * @date Thu, 11 Aug 2016 20:12:54 +0200
  * @version 1.0
  * @author Tommaso Panozzo
