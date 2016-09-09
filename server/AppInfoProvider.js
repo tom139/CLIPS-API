@@ -7,10 +7,10 @@ function AppInfoHandler(req, res) {
    this.execute   = function() {
       // rispondo con lo stato 200 e le info sull'app
       this.response.status(200).send({
-         description  : 'Descrizione dell\'applicazione',
+         description  : 'CLIPS è un progetto di Ingegneria del software, sviluppato dal team CLIPS il cui prodotto finale consisterà di un’applicazione mobile che, interagendo con dei beacons sparsi nell’area designata, guiderà l’utente attraverso un percorso. L’utente potrà completare il percorso superando tutte le prove che gli si presenteranno nelle diverse tappe. Le prove potranno essere degli indovinelli o dei semplici giochi inerenti all’area in cui si svolge il percorso.',
          websiteURL   : 'beaconstrips.tk',
          supportemail : 'beaconstrips.swe@gmail.com',
-         discoveryUUID: 'asdfhjlk-hjkl-fdas-jklh-fdas-fjdkalhd'
+         discoveryUUID: 'f7826da6-4fa2-4e98-8024-bc5b71e0893e'
       });
    }
 };
