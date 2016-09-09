@@ -1,3 +1,14 @@
+--
+-- @file ./builder/CLIPS_data.sql
+-- @date 03/09/2016
+-- @version 1.0
+-- @author Tommaso Panozzo
+--
+-- File per popolare il database
+
+
+
+
 -- phpMyAdmin SQL Dump
 -- version 4.0.10.16
 -- http://www.phpmyadmin.net

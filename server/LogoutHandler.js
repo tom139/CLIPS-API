@@ -1,3 +1,11 @@
+/**
+ * @file ./LogoutHandler.js
+ * @date Thu, 11 Aug 2016 20:12:54 +0200
+ * @version 1.0
+ * @author Tommaso Panozzo
+ *
+ * DescrizioneDelFile
+ */
 'use strict';
 
 var userID = require('./UserIDRetriever.js');

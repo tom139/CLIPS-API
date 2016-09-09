@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#
+# @file installDB.sh
+# @date 3/09/2016
+# @version 1.0
+# @author Tommaso Panozzo
+#
+# file di installazione e configurazione del database
+
 echo "Inizia la procedura di installazione del database. 💪🏼"
 
 echo -e "Inserisci l'indirizzo dell'host del database (solitamente localhost): \c"
