@@ -1,3 +1,11 @@
+/**
+ * @file ./server/URLRequestHandler.js
+ * @date Wed, 3 Aug 2016 08:58:10 +0200
+ * @version 1.0
+ * @author Tommaso Panozzo
+ *
+ * DescrizioneDelFile
+ */
 'use strict';
 
 /// super classe che rappresenta l'handler di una richiesta URL

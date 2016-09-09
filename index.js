@@ -1,7 +1,7 @@
 /**
-*  @file index.js
+*  @file ./index.js
 *  @date 01/08/2016
-*  @version 1
+*  @version 1.0
 *  @author Tommaso Panozzo
 *
 *  entry point dell'API

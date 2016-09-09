@@ -1,3 +1,11 @@
+/**
+ * @file ./server/RankingProvider.js
+ * @date Thu, 1 Sep 2016 18:19:41 +0200
+ * @version 1.0
+ * @author Tommaso Panozzo
+ *
+ * DescrizioneDelFile
+ */
 'use strict';
 
 const db = require('./DBHandler.js');
