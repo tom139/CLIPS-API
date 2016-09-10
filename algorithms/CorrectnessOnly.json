@@ -7,6 +7,6 @@
     "minScore": 0,
     "maxScore": 100,
     "minTime": 0,
-    "maxTime": 0
+    "maxTime": 1
   }
 }
