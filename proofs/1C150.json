@@ -1,0 +1,19 @@
+{
+   "testType": "TrueFalse",
+   "testTypeVersion": 1,
+   "data" : {
+      "shuffleQuestions": false,
+      "questions" : [
+         {
+            "helpText": "Pensaci bene!",
+            "question": "L'esame di Programmazione ad Oggetti è propedeutico all'esame di Ingegneria del Software",
+            "correctAnswer": true
+         },
+         {
+            "helpText": "",
+            "question": "È consigliabile arrivare in ritardo alle lezioni di Ingegneria del Software",
+            "correctAnswer": false
+         }
+      ]
+   }
+}

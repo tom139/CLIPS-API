@@ -1,0 +1,28 @@
+{
+   "testType": "MultipleChoice",
+   "testTypeVersion": 1,
+   "data" : {
+      "shuffleAnswers": true,
+      "shuffleQuestions": false,
+      "questions" : [
+         {
+            "helpText": "Non mi pare fosse bianco!",
+            "question": "Di che colore era il cavallo bianco di Napoleone?",
+            "answers" : ["Bianco", "Rosa", "Blu", "Rosso"],
+            "correctIndex" : 0
+         },
+         {
+            "helpText": "5 + 5 = 55",
+            "question": "5 + 5 = ",
+            "answers" : ["9", "10", "11", "12"],
+            "correctIndex": 1
+         },
+         {
+            "helpText": "Mi pare fosse Amici di Maria, no?",
+            "question": "Se un mattone pesa un Kg più mezzo mattone; quanto pesa un mattone?",
+            "answers" : ["1 Kg", "2 Kg", "3 Kg", "impossibile capirlo"],
+            "correctIndex" : 1
+         }
+      ]
+   }
+}
