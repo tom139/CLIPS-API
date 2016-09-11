@@ -10,6 +10,6 @@
 'use strict';
 
 module.exports = {
-   host: 'localhost',
+   host: 'beaconstrips.tk',
    port: 1234
 };
