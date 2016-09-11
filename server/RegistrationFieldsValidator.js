@@ -4,7 +4,8 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * gestisce la richiesta di validazione dei dati, cioè risponde al client se
+ * sono validi senza però salvarli
  */
 'use strict';
 

@@ -4,7 +4,8 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * configurazioni per il test, utile per decidere se effettuare i test su una
+ * macchina remota
  */
 'use strict';
 

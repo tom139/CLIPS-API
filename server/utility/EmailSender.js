@@ -4,7 +4,7 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * Classe che invia email dall'indirizzo beaconstrips.swe@gmail.com
  */
 'use strict';
 

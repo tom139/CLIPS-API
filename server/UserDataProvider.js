@@ -4,7 +4,7 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * gestisce la richiesta di visualizzazione e modifica dei dati utente
  */
 'use strict';
 

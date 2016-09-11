@@ -4,7 +4,7 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * ottiene l'userID a partire dal token
  */
 'use strict';
 

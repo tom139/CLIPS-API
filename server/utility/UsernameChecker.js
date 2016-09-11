@@ -4,7 +4,7 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * controlla che l'username sia valido e disponibile
  */
 'use strict';
 
