@@ -233,12 +233,6 @@ function PostUserData() {
       });
    };
 
-   this.validatePassword = function(oldPassword, newPassword) {
-      return new Promise(function(resolve, reject) {
-
-      });
-   }
-
    this.saveData = function(data) {
       return new Promise(function(resolve, reject) {
          this.getToken()
