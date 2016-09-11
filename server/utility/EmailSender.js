@@ -10,7 +10,6 @@
 
 const nodemailer = require('nodemailer');
 
-// const transporter = nodemailer.createTransport('smtps://beaconstrips.swe%40gmail.com:beaconclips2016swe@smtp.gmail.com');
 const transporter = nodemailer.createTransport({
    service: 'gmail',
    auth: {

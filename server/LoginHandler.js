@@ -70,8 +70,6 @@ function BeaconRequest() {
                   expirationDate: '2016-12-31'
                });
                query.then(function(result) {
-                  // console.log('il token appena generato è ', token);
-
                   // ottengo i dati (username e email) da tornare all'utente
                   var context = {
                      response: handler.response,

@@ -85,19 +85,6 @@ function GetUserData() {
       });
    };
 
-   // this.handleError = function(error) {
-   //    console.log('handleError(',error,')');
-   //    this.response.status(error.errorCode).send(error);
-   //    console.error(error);
-   // };
-
-   // this.sendData = function(data) {
-   //    console.log('sendData.this', this);
-   //    // console.log('response = ', this.response);
-   //    console.log('sendData(',data,')');
-   //    this.response.status(200).send(data);
-   // };
-
    this.execute = function() {
       this.getToken()
       .then(this.getUserID, function(error) {
