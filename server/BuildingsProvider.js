@@ -9,7 +9,7 @@
 'use strict';
 
 var db = require('./DBHandler.js');
-var SQLRequestHandler = require('./SQLRequestHandler.js');
+var URLRequestHandler = require('./URLRequestHandler.js');
 
 function distance(client, building) {
    var R = 6371e3; // metres
@@ -151,6 +151,6 @@ function BuildingsHandler() {
    };
 };
 
-BuildingsHandler.prototype = new SQLRequestHandler;
+BuildingsHandler.prototype = new URLRequestHandler;
 
 module.exports = BuildingsHandler;

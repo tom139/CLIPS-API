@@ -10,7 +10,7 @@
 
 var userID = require('./UserIDRetriever.js');
 var db = require('./DBHandler.js');
-var SQLRequestHandler = require('./SQLRequestHandler.js');
+var URLRequestHandler = require('./URLRequestHandler.js');
 
 function LogoutHandler() {
    this.execute = function() {
@@ -38,6 +38,6 @@ function LogoutHandler() {
    }
 };
 
-LogoutHandler.prototype = new SQLRequestHandler;
+LogoutHandler.prototype = new URLRequestHandler;
 
 module.exports = LogoutHandler;

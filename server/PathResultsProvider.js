@@ -11,7 +11,7 @@
 var userID = require('./UserIDRetriever.js');
 var db = require('./DBHandler.js');
 var UserID = require('./utility/UserID.js').userID;
-var SQLRequestHandler = require('./SQLRequestHandler.js');
+var URLRequestHandler = require('./URLRequestHandler.js');
 
 function PathsResultsHandler() {
    this.execute = function() {
@@ -87,7 +87,7 @@ function PathsResultsHandler() {
    }
 }
 
-PathsResultsHandler.prototype = new SQLRequestHandler;
+PathsResultsHandler.prototype = new URLRequestHandler;
 
 function SavePathsResultsHandler() {
    this.execute = function() {
@@ -266,7 +266,7 @@ function SavePathsResultsHandler() {
    };
 };
 
-SavePathsResultsHandler.prototype = new SQLRequestHandler;
+SavePathsResultsHandler.prototype = new URLRequestHandler;
 
 module.exports.get = PathsResultsHandler;
 module.exports.set = SavePathsResultsHandler;
