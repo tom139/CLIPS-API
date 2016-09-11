@@ -4,7 +4,7 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * gestisce la richiesta di classifica per un percorso
  */
 'use strict';
 

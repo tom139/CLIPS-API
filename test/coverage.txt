@@ -1,29 +1,29 @@
 # file   total    tested
 
-EmailChecker                           29                      22 +
-EmailSender                            22                       2 +
-PasswordChecker                        46                      46 +
-PasswordResetEmailSender               15                       2 +
-TokenGenerator                          8                       8 +
-UserID                                 40                      14 +
-UsernameChecker                        18                      15 +
-AppInfoProvider                        13                      13 +
-BuildingsProvider                      78                      62 +
-configjs                               11                      11 +
-DBHandler                              11                      11 +
-LoginHandler                          125                      98 +
-LogoutHandler                          30                      25 +
-PasswordResetEmailSender               88                       5 +
-PathProvider                          186                     161 +
-PathResultsProvider                   177                       7 +
-RankingProvider                        58                       2 +
-RegistrationFieldsValidator           116                      98 +
-RegistrationHandler                   115                      87 +
-URLRequestHandler                       8                       8 +
-URLRequestRouter                       83                      67 +
-UserDataProvider                      242                     202 +
-UserIDRetriever                        26                      17
+EmailChecker                     29           22
+EmailSender                      22            2
+PasswordChecker                  46           46
+PasswordResetEmailSender         15            2
+TokenGenerator                    8            8
+UserID                           40           14
+UsernameChecker                  18           15
+AppInfoProvider                  13           13
+BuildingsProvider                78           62
+configjs                         11           11
+DBHandler                        11           11
+LoginHandler                    125           98
+LogoutHandler                    30           25
+PasswordResetEmailSender         88            5
+PathProvider                    186          161
+PathResultsProvider             177            7
+RankingProvider                  58            2
+RegistrationFieldsValidator     116           98
+RegistrationHandler             115           87
+URLRequestHandler                 8            8
+URLRequestRouter                 83           67
+UserDataProvider                242          202
+UserIDRetriever                  26           17
 
----------------------------------------------------------------------
-TOTAL                                1545                     983
-RATIO                                0.64
+--------------------------------------------------
+TOTAL                          1545          983
+RATIO                          0.64

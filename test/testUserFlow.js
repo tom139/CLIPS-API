@@ -4,7 +4,7 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * Testa il flusso di registrazione/login/modifica/visualizzazione/logout
  */
 'use strict';
 

@@ -4,13 +4,12 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * Classe che invia email dall'indirizzo beaconstrips.swe@gmail.com
  */
 'use strict';
 
 const nodemailer = require('nodemailer');
 
-// const transporter = nodemailer.createTransport('smtps://beaconstrips.swe%40gmail.com:beaconclips2016swe@smtp.gmail.com');
 const transporter = nodemailer.createTransport({
    service: 'gmail',
    auth: {

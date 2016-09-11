@@ -4,7 +4,7 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * gestisce la richiesta della lista degli edifici abilitati
  */
 'use strict';
 
@@ -29,13 +29,6 @@ function distance(client, building) {
 }
 
 function BuildingsHandler() {
-   // this.queryFromRequest = function() {
-   //    return {
-   //       select : '*',
-   //       from   : 'Building'
-   //    };
-   //    //@TODO implementare la chiamata per verificare latitudine e longitudine
-   // };
 
    this.addDistance = function(client, building) {
       building.distanceFromClient = distance(client, building);

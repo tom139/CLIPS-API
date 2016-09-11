@@ -4,7 +4,7 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * gestisce la creazione degli oggetti query knex per l'interazione con il DB
  */
 'use strict';
 

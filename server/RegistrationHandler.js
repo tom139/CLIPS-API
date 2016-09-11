@@ -4,7 +4,7 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * gestisce la richiesta di registrazione
  */
 'use strict';
 
@@ -121,29 +121,6 @@ function RegistrationRequestHandler() {
          }.bind(response));
       }
    };
-
-   // this.newUser(data) {
-   //    var query = db()('User').insert({
-   //       username: username,
-   //       email: email,
-   //       password: password
-   //    });
-   //    var response = this.response
-   //    query.then(function(result) {
-   //       console.log('did create new user');
-   //       //@TODO effettuare il login e restituire un token valido
-   //       console.log('result: ', result);
-   //       response.status(200).send({
-   //          result: result
-   //       })
-   //    }, function(error) {
-   //       console.error('error creating new user: ', error);
-   //       response.status(505).send({
-   //          errorCode: 505,
-   //          debugMessage: "errorCreating user " + error
-   //       });
-   //    });
-   // }
 };
 
 RegistrationRequestHandler.prototype = new RequestHandler;

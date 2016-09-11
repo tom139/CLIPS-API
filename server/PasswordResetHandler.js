@@ -4,7 +4,7 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * gestisce la richiesta di reset della password
  */
 'use strict';
 
@@ -32,7 +32,6 @@ function Error(code, debug, user, info) {
 }
 
 function sendEmail(sendingData) {
-   //TODO: implementare il metodo che invia l'email
    return new Promise(function(resolve, reject) {
       emailSender(sendingData.password, sendingData.email)
       .then(function(info) {
@@ -80,15 +79,6 @@ function PasswordResetProvider() {
          this.response.status(error.errorCode).send(error);
       }.bind(this));
    };
-
-   // this.sendError = function(error) {
-   //    console.error('should send error', error);
-   //    this.response.status(error.errorCode).send(error);
-   // }
-   //
-   // this.success = function() {
-   //    this.response.status(200).send();
-   // }
 
    this.getEmail = function() {
       const data = this.request.body;

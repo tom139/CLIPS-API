@@ -4,7 +4,7 @@
  * @version 1.0
  * @author Tommaso Panozzo
  *
- * DescrizioneDelFile
+ * superclasse per la gestione delle richieste
  */
 'use strict';
 
