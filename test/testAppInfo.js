@@ -41,7 +41,7 @@ describe('# AppInfo', function() {
 
          // check UUID
          const uuid = body.discoveryUUID;
-         expect(uuid).to.be.a('string').and.to.have.length(37);
+         expect(uuid).to.be.a('string').and.to.have.length(36);
       });
    });
 
