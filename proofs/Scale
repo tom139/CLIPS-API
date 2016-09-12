@@ -1,0 +1,19 @@
+{
+   "testType": "TrueFalse",
+   "testTypeVersion": 1,
+   "data" : {
+      "shuffleQuestions": false,
+      "questions" : [
+         {
+            "helpText": "Attento ai pinguini!",
+            "question": "Il padre del Web è Linus Torvalds",
+            "correctAnswer": false
+         },
+         {
+            "helpText": "Attento a non copiare!",
+            "question": "La shortcut per il salvataggio rapido è Ctrl+c",
+            "correctAnswer": false
+         },
+      ]
+   }
+}
