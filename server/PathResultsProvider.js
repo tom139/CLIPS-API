@@ -232,8 +232,8 @@ function SavePathsResultsHandler() {
             if (!endTime) {
                missingFields.push('endTime');
             }
-            var score = proof.score;
-            if (!score) {
+            var proofscore = proof.score;
+            if (!proofscore) {
                missingFields.push('score');
             }
 
@@ -254,7 +254,7 @@ function SavePathsResultsHandler() {
                   proofID: proofID,
                   startTime: startTime,
                   endTime: endTime,
-                  score: score
+                  score: proofscore
                });
             }
          }
