@@ -17,7 +17,7 @@ function userIDFromToken(token) {
       });
       query.then(function(result) {
          if (result.length < 1) {
-            console.error('error: no results for token (',token,'): ', error);
+            console.error('error: no results for token (',token,'): ');
             reject({
                requestError: {
                   errorCode: 461,
