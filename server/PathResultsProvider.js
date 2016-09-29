@@ -233,7 +233,7 @@ function SavePathsResultsHandler() {
                missingFields.push('endTime');
             }
             var proofscore = proof.score;
-            if (!proofscore) {
+            if (!proof.hasOwnProperty('score')) {
                missingFields.push('score');
             }
 
